@@ -61,16 +61,16 @@
 									<div class="kanan">
 										<span class="info_small">Nomor iklan: <b>123456</b></span>
 									</div>
-
-									
-
-									<hr/>
-									FOTO
-									<hr/>
-									<br/>
-
-									Keterangan
 								</div>
+
+								<div class="clear"></div>
+
+								<hr/>
+								FOTO
+								<hr/>
+								<br/>
+
+								Keterangan
 
 								
 							</div> <!-- Content -->
