@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2013 at 04:26 AM
+-- Generation Time: May 19, 2013 at 05:38 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -60,7 +60,43 @@ CREATE TABLE IF NOT EXISTS `kategori` (
   `id_kategori` int(11) NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(255) NOT NULL,
   PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'Mobil'),
+(2, 'Alat-alat Musik'),
+(3, 'Anak dan Bayi'),
+(4, 'Buku'),
+(5, 'Elektronik Konsumen'),
+(6, 'Fashion Pria'),
+(7, 'Fashion Wanita'),
+(8, 'Film'),
+(9, 'Fotografi'),
+(10, 'Games dan Consoles'),
+(11, 'Handicrafts'),
+(12, 'Handphone dan Gadget'),
+(13, 'Handphone Aksesoris'),
+(14, 'Hewan Piaraan dan Aksesoris'),
+(15, 'Jam dan Periasan'),
+(16, 'Jasa'),
+(17, 'Kesehatan dan Kecantikan'),
+(18, 'Koleksi'),
+(19, 'Konstruksi dan Taman'),
+(20, 'Libuaran dan Bepergian'),
+(21, 'Lowongan Pekerjaan'),
+(22, 'Makanan dan Minuman'),
+(23, 'Mobil dan Aksesoris'),
+(24, 'Mobil dan Onderdil'),
+(25, 'Motor dan Sekuter'),
+(26, 'Properti'),
+(27, 'Komputer'),
+(28, 'Perlengkapan Rumah'),
+(29, 'TV dan Audio'),
+(30, 'Sepeda dan Aksesoris');
 
 -- --------------------------------------------------------
 
@@ -100,7 +136,47 @@ CREATE TABLE IF NOT EXISTS `provinsi` (
   `id_provinsi` int(11) NOT NULL AUTO_INCREMENT,
   `nama_provinsi` varchar(255) NOT NULL,
   PRIMARY KEY (`id_provinsi`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+
+--
+-- Dumping data for table `provinsi`
+--
+
+INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
+(1, 'Aceh D.I'),
+(2, 'Bali'),
+(3, 'Bangka Belitung'),
+(4, 'Banten'),
+(5, 'Bengkulu'),
+(6, 'Gorontalo'),
+(7, 'Jakarta D.K.I'),
+(8, 'Jambi'),
+(9, 'Jawa Barat'),
+(10, 'Jawa Tengah'),
+(11, 'Jawa Timur'),
+(12, 'Kalimantan Barat'),
+(13, 'Kalimantan Selatan'),
+(14, 'Kalimantan Tengan'),
+(15, 'Kalimantan Timur'),
+(16, 'Kalimantan Timur'),
+(17, 'Kepulauan Riau'),
+(18, 'Lampung'),
+(19, 'Maluku'),
+(20, 'Maluku Utara'),
+(21, 'Nusa Tenggara Barat'),
+(22, 'Nusa Tenggara Timur'),
+(23, 'Papua'),
+(24, 'Papua Barat'),
+(25, 'Riau'),
+(26, 'Sulawesi Barat'),
+(27, 'Sulawesi Tengah'),
+(28, 'Sulawesi Selatan'),
+(29, 'Sulawesi Tenggara'),
+(30, 'Sulawesi Utara'),
+(31, 'Sumatera Barat'),
+(32, 'Sumatera Selatan'),
+(33, 'Sumatera Utara'),
+(34, 'Yogyakarta D.I');
 
 -- --------------------------------------------------------
 
