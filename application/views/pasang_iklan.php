@@ -14,7 +14,7 @@
 								<div class="content">
 									<b>Cari di Etalase.com</b>
 									<!-- Pencarian -->
-									<form>
+									<form action="<?php echo base_url ()?>index.php/pasang_iklan/add_iklan" method="POST">
 										Cari
 										<input type="text" class="input-form">
 
