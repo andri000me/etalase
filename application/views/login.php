@@ -52,7 +52,7 @@
 									<img src="<?php echo base_url()?>img/logo_full.png" width="150px"/>
 								</center>
 								<br/>
-								Anda belum tergabung dengan Etalase? Bergabunglah <a href="registrasi/daftar">disini</a>
+								Anda belum tergabung dengan Etalase? Bergabunglah <a href="user/daftar">disini</a>
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
 					</div>
