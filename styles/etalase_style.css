@@ -77,7 +77,7 @@
 }
 
 .info_iklan{
-	width: 600px;
+	max-width: 310px;
 }
 
 .judul_iklan{

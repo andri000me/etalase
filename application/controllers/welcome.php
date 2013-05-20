@@ -90,6 +90,15 @@ class Welcome extends CI_Controller {
 		$this->load->view('template/foot');
 	}
 
+	public function profil(){
+		$this->load->view('template/head');
+		$this->load->view('template/header_bar');
+		$this->load->view('template/content_head');
+		$this->load->view('profil'); //view yang diganti
+		$this->load->view('template/content_foot');
+		$this->load->view('template/foot');
+	}
+
 }
 
 /* End of file welcome.php */

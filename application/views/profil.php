@@ -1,4 +1,5 @@
 
+					
 				<div id="profil-bar">
 
 					<div id="profil-kiri" class="kiri">
@@ -37,46 +38,57 @@
 						</div>
 
 					</div>
+					
+					
 
 					<div class="clear"></div>
 				</div>
 
 				<div id="kategori">
+
 					<div class="kiri">
-						<div class="container_2">
+						<div class="container_3 border-g">
 							<div class="content">
-
-								<h1>Mari bergabung!</h1>
-
-								<center>
-									<img src="<?php echo base_url()?>img/logo_full.png" width="150px"/>
-								</center>
 								<br/>
-								Anda belum tergabung dengan Etalase? Bergabunglah <a href="registrasi/daftar">disini</a>
+								Edit profil
+							</div> <!-- Content -->
+						</div> <!-- container_3 -->
+					</div>
+
+					<div class="kanan">
+
+						<div class="container_2p3 border-g">
+							<div class="content">
+							
+								<!-- iklan -->
+								<div class="card">
+									<div class="content">
+										<div class="kiri">
+											<div class="photo border-g">
+											</div>
+										</div>
+
+										<div class="kiri content info_iklan">
+											<b><a href="#">Nama Iklan</a></b><br/>
+											<span class="info_small">Lokasi</span><br/>
+											<span class="info_small">Kondisi</span><br/>
+											<span class="info_small">Harga</span><br/>
+											<span class="info_small">Waktu Tayang</span><br/>
+										</div>
+
+										<div class="kanan">
+											<b>Rp 2.000.000</b>
+										</div>
+
+										<div class="clear"></div>
+									</div>
+								</div>
+
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
 					</div>
 
-					<div class="kanan">
-						<div class="container_2">
-							<div class="content">
-								<!-- Login -->
-								<h1>Login</h1>
 
-								<form method="POST" action="<?php echo base_url()?>index.php/login/proses_login">
-									Username<br/>
-									<input type="text" name="username" class="input-form"/><br/>
-									Password<br/>
-									<input type="password" name="password" class="input-form"/><br/>
-									<input type="submit" class="input-button" value="Login"/>
-
-
-								</form>
-							</div><!-- content -->
-
-						</div>
-					</div>
 
 					<div class="clear"></div>
-
 </div>

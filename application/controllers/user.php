@@ -1,6 +1,6 @@
 <?php
 
-class Registrasi extends CI_Controller {
+class User extends CI_Controller {
 	
 	public function __construct(){
 		parent::__construct();   
@@ -12,7 +12,7 @@ class Registrasi extends CI_Controller {
 	
 	public function index()
     {
-        $data['judul'] = 'Web Portal › SIMATIK';
+        $data['judul'] = '';
         $this->load->view('template/head');
 		$this->load->view('template/header_bar');
 		$this->load->view('template/content_head');
@@ -20,32 +20,7 @@ class Registrasi extends CI_Controller {
 		$this->load->view('template/content_foot');
 		$this->load->view('template/foot');    
     }
- 
-    public function login(){
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$this->load->model('user_model');
-		
-		if ($this->user_model->cek_username_password($username,$password)) {
-			//data untuk kebutuhan session
-			$userdata = array('username'=>$username,
-							  'LOGGED_IN'=>true);
-			$this->session->set_userdata($userdata);
-			$data['error']='eh error';
-			$data['title'] = "etalase";
-				
-			//redirect('utama');
 
-		} else {
-			$data['error']='Tidak ada username atau password tersebut';
-			$this->load->view('template/head');
-			$this->load->view('template/header_bar');
-			$this->load->view('template/content_head');
-			$this->load->view('login'); //view yang diganti
-			$this->load->view('template/content_foot');
-			$this->load->view('template/foot');
-		}
-	}
 	//daftar
 	function daftar()
     {
@@ -65,6 +40,16 @@ class Registrasi extends CI_Controller {
         $data['notifikasi'] = 'Data berhasil disimpan';
         $data['judul']='Insert Data Berhasil';
         $this->load->view('notifikasi', $data);
+    }
+
+    function profil(){
+    	$data['judul'] = '';
+        $this->load->view('template/head');
+		$this->load->view('template/header_bar');
+		$this->load->view('template/content_head');
+		$this->load->view('profil'); //view yang diganti
+		$this->load->view('template/content_foot');
+		$this->load->view('template/foot'); 
     }
 
 	
