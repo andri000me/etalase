@@ -124,8 +124,86 @@ class User extends CI_Controller {
 			$pin_bb = $this->input->post('pin_bb');
 		
 			$this->user_model->update_profil($username, $nama_lengkap, $alamat, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
+			redirect('user/profil');
 		}
 	}
+	
+	public function edit_photo(){
+
+			//mengecek login
+			if ($this->session->userdata('LOGGED_IN')) {
+				$username = $this->session->userdata("username");
+
+				$datauser = $this->user_model->select_user($username);
+
+				$data['username'] = $username;
+
+				
+				$data['error'] = "";
+
+
+				$namafolder= "photo/"; //folder tempat menyimpan file
+
+				/****   UPLOAD GAMBAR  *****/
+
+				  if (!empty($_FILES["photo"]["tmp_name"]))
+				  {
+				      $jenis_gambar=$_FILES['photo']['type'];
+				      if($jenis_gambar=="image/jpeg" || $jenis_gambar=="image/jpg" || $jenis_gambar=="image/gif" || $jenis_gambar=="image/png")
+				      {      
+
+				      	  $basename_gambar = $datauser->id_user.basename($_FILES['photo']['name']);
+				          $gambar = $namafolder .$basename_gambar;
+				          if (move_uploaded_file($_FILES['photo']['tmp_name'], $gambar)) {
+				              
+				              //file yang lama dihapus
+				              $foto_lama = $datauser->photo;
+
+				              if ($foto_lama !=  "0" && file_exists($namafolder.$foto_lama)) {
+				              		unlink($namafolder.$foto_lama);
+				              }
+
+			              	//simpan nama gambar di database
+				            $this->user_model->simpan_update_user($datauser->id_user, array("photo"=>$basename_gambar));
+				           	$data['error'] = "Foto berhasil diupload";
+
+				          } else {
+				             $data['error'] = "Foto gagal diupload";
+				          }
+
+				      } else {
+				          $data['error'] = "Foto harus berjenis .jpg .gif .png";
+				      }
+				  
+				  }else {
+				        $data['error'] = "Anda belum memilih gambar";
+				  }
+
+
+				//data yang ditampilkan di halaman edit
+				$data_pengguna = $this->user_model->select_user($username);
+
+				$foto = $data_pengguna->photo;
+				$foto_tampil = "";
+				if ($foto == 0) {
+					$foto_tampil = "<img src='".base_url()."img/kosong.png' width='80px' height='80px'/>";
+				}else{
+					$foto_tampil = "<img src='".base_url()."photo/".$foto."' width='80px' height='80px'/>";
+				}
+
+				$data['photo'] = $foto_tampil;
+
+
+				$this->load->view('template/head');
+				$this->load->view('template/header_bar');
+				$this->load->view('template/content_head');
+				$this->load->view('edit_profil'); //view yang diganti
+				$this->load->view('template/content_foot');
+				$this->load->view('template/foot');
+				
+
+			}
+		}
 	
 	function logout() {
 			$this->session->sess_destroy();

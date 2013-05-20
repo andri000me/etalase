@@ -58,7 +58,7 @@
 
 								<!-- Form profil -->
 
-								<form>
+								<form action="<?php echo base_url()?>index.php/user/edit_photo" method="post" enctype="multipart/form-data" name="FormUpload" id="FormUpload">
 									Foto<br/>
 
 									<img src="<?php echo base_url()?>img/foto.png" height="80px" width="80px"/>
