@@ -68,26 +68,21 @@
 									<input type="button" class="input-button" value="upload foto"/>
 								</form>
 								<hr/>
-								<form action="<?php echo base_url()?>index.php/user/edit_profil" method="POST">
+								<form action="<?php echo base_url()?>index.php/user/simpan_edit_profil" method="POST">
+									
+									Username<br/>
+									<input type="text" name="username" class="input-form" value=<?php echo $username?> /><br/>
+									<br/>
 									
 									Nama<br/>
-									<input type="text" class="input-form" name="nama"/><br/>
+									<input type="text" class="input-form" name="nama_lengkap"/><br/>
 									<br/>
-
-									Bio<br/>
-									<textarea class="input-form" name="bio" style="height:80px"></textarea><br/>
-									
-									<br/>
-
-									Username<br/>
-									<input type="text" name="username" class="input-form"/><br/>
-									<br/>
-
+														
 									Alamat<br/>
 									<textarea  name="alamat" class="input-form" style="height:80px"></textarea><br/>
 
 									<br/>
-
+									
 									Provinsi<br/>
 									<select class="input-form">
 										<option>
@@ -104,22 +99,28 @@
 									<br/>
 
 									<br/>
-									No. Telepon<br/>
-									<input type="text" name="no.tlp" class="input-form"/><br/>
-									<br/>
-
-									Pin BB<br/>
-									<input type="text" name="pin_bb" class="input-form"/><br/>
-
-									Yahoo Messenger<br/>
-									<input type="text" name="ym" class="input-form"/><br/>
-
+									
 									Facebook<br/>
 									<input type="text" name="fb" class="input-form"/><br/>
-
+									
+									Yahoo Messenger<br/>
+									<input type="text" name="yahoo" class="input-form"/><br/>
+									
 									Twitter<br/>
-									<input type="text" name="twt" class="input-form"/><br/>
+									<input type="text" name="twitter" class="input-form"/><br/>
 									<br/>
+									
+									Bio<br/>
+									<textarea class="input-form" name="bio" style="height:80px"></textarea><br/>
+									
+									<br/>
+
+									No. Telepon<br/>
+									<input type="text" name="tlp" class="input-form"/><br/>
+									<br/>
+									
+									Pin BB<br/>
+									<input type="text" name="pin_bb" class="input-form"/><br/>
 
 									<input type="checkbox"/> Tampilkan nomor telepon saya di iklan
 

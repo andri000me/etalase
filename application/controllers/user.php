@@ -69,24 +69,66 @@ class User extends CI_Controller {
 		$this->load->view('template/foot'); 
     }
 	
+	//EDIT USER
+	
 	function edit_profil(){
     	$data['title'] = "Edit_Profile";
 			if ($this->session->userdata('LOGGED_IN')) {
+				$this->load->model('user_model');
+				$username = $this->session->userdata("username");
+				$data['username'] = $username;
 				
 				$this->load->view('template/head');
 				$this->load->view('template/header_bar');
 				$this->load->view('template/content_head');
-				$this->load->view('edit_profil'); //view yang diganti
+				$this->load->view('edit_profil',$data); //view yang diganti
 				$this->load->view('template/content_foot');
 				$this->load->view('template/foot');
+				/*
+				$username
+				$nama_lengkap
+				$alamat
+				//$provinsi
+				//$kabupaten
+				$fb
+				$yahoo
+				$twitter
+				$bio
+				$tlp
+				$pin_bb
+				*/
 			}else{
 				redirect('etalase');
 			}
     }
 	
+	function simpan_edit_profil(){
+		if ($this->session->userdata('LOGGED_IN')) {
+			$username = $this->session->userdata("username");
+
+			$datauser = $this->user_model->select_user($username);
+
+			$data['username'] = $username;
+			
+			//melakukan edit data
+			$username = $this->input->post('username');
+			$nama_lengkap = $this->input->post('nama_lengkap');
+			$alamat = $this->input->post('alamat');
+			//$provinsi  = $this->input->post('provinsi');
+			//$kabupaten  = $this->input->post('kabupaten');
+			$fb  = $this->input->post('fb');
+			$yahoo = $this->input->post('yahoo');
+			$twitter = $this->input->post('twitter');
+			$bio = $this->input->post('bio');
+			$tlp = $this->input->post('tlp');
+			$pin_bb = $this->input->post('pin_bb');
+		
+			$this->user_model->update_profil($username, $nama_lengkap, $alamat, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
+		}
+	}
+	
 	function logout() {
 			$this->session->sess_destroy();
-			$data['error'] = 'Anda telah keluar.';
 			$this->load->view('template/head');
 			$this->load->view('template/header_bar_utama');
 			$this->load->view('template/content_head');

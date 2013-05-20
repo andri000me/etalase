@@ -22,6 +22,45 @@ class User_model extends CI_Model{
 		}
 	}
 	
+	//////=====================================////////////////////
+	function get_user_all()
+    {
+        $query=$this->db->query("SELECT * FROM user ORDER BY id_user DESC");
+        return $query->result();
+    }
+	
+	function edit_user($username)
+    {
+        $q="SELECT * FROM  user WHERE username='$username'";
+        $query=$this->db->query($q);
+        return $query->row();
+    }
+
+    function simpan_edit_user($id_user, $nama_lengkap, $username, $password, $email, $alamat)
+    {
+        $data = array(
+            'id_user'        => $id_user,
+            'nama_lengkap'   => $nama_lengkap,
+            'username'       => $username,
+            'password'       => $password,
+            'email'          => $email,     
+            'alamat'         => $alamat
+        );
+        $this->db->where('id_user', $id_user);
+        $this->db->update('user', $data);    
+    }
+	
+	
+	
+	
+	
+	
+	
+	//////=====================================////////////////////
+	
+	
+	
+	
 	//insert user
 	function insert_user(){
 		$data = array(
@@ -72,6 +111,20 @@ class User_model extends CI_Model{
 	function ganti_password($username, $password){
 		$this->db->where('username', $username);
 		$this->db->update('user', array('password'=>$password));
+	}
+	
+	//update
+	function update_profil($username, $nama_lengkap, $alamat, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb){
+		$this->db->where('username', $username);
+		$this->db->update('user', array('username'=>$username,
+										'nama_lengkap'=>$nama_lengkap,
+										'alamat'=>$alamat,
+										'fb'=>$fb,
+										'yahoo'=>$yahoo,
+										'twitter'=>$twitter,
+										'bio'=>$bio,
+										'tlp'=>$tlp,
+										'pin_bb'=>$pin_bb));
 	}
 	
 	

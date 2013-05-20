@@ -45,8 +45,10 @@
 					<div class="kiri">
 						<div class="container_3 border-g">
 							<div class="content">
-								<br/>	
+								<br/>
+									<a href="edit_profil">
 								Edit profil
+									</a>
 							</div> <!-- Content -->
 						</div> <!-- container_3 -->
 					</div>

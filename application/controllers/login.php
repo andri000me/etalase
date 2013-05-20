@@ -38,7 +38,7 @@
 				$data['error']='';
 				$data['title'] = "etalase";
 				
-				redirect("user/edit_profil");
+				redirect("user/profil");
 				
 			} else {
 				$data['error']='Tidak ada username atau password tersebut';
