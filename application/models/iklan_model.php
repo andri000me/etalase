@@ -10,4 +10,12 @@
 			$query = $this->db->insert('iklan', $data);
 			return $query;
 		}
+
+
+		function get_iklan_by_category($id_category){
+			$query = $this->db->get_where('iklan', array('id_kategori'=>$id_category));
+
+			return $query->result();
+		}
+
 	}
