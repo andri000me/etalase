@@ -10,9 +10,7 @@
 									<input type="text" class="input-form">
 
 									<select class="input-form">
-										<option>
-											Pilihan kategori
-										<option>
+										<?php echo $provinsi_model?>
 									</select>
 
 									<select class="input-form">

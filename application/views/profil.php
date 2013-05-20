@@ -1,5 +1,3 @@
-
-					
 				<div id="profil-bar">
 
 					<div id="profil-kiri" class="kiri">
@@ -91,4 +89,4 @@
 
 
 					<div class="clear"></div>
-</div>
+				</div>
