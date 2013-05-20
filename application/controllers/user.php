@@ -68,6 +68,24 @@ class User extends CI_Controller {
 		$this->load->view('template/content_foot');
 		$this->load->view('template/foot'); 
     }
+	
+	function edit_profil(){
+    	$data['title'] = "Edit_Profile";
+			if ($this->session->userdata('LOGGED_IN')) {
+				
+				
+				$this->load->view('template/head');
+				$this->load->view('template/header_bar');
+				$this->load->view('template/content_head');
+				$this->load->view('edit_profil'); //view yang diganti
+				$this->load->view('template/content_foot');
+				$this->load->view('template/foot');
+			}else{
+				redirect('etalase');
+			}
+		
+        
+    }
 
 	
 }

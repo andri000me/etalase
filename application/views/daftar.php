@@ -63,7 +63,7 @@
 							<div class="content">
 								<!-- Daftar -->
 								<h1>Daftar</h1>
-
+									
 								<form action="user_daftar" method="post">
 									Username<br/>
 									<input type="text" name="username" class="input-form"/><br/>

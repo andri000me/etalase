@@ -4,6 +4,7 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('user_model');
+			$this->load->model('provinsi_model');
 			$this->load->library('session');
 		}
 
@@ -15,6 +16,7 @@
 	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
 	        }
 			//Menampilkan View
+			$data['error']='';
 			$this->load->view('template/head', $data);
 			$this->load->view('template/content_head', $data);
 			$this->load->view('login', $data);
@@ -27,7 +29,6 @@
 	    public function proses_login(){
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
-			$this->load->model('user_model');
 			
 			if ($this->user_model->cek_username_password($username,$password)) {
 				//data untuk kebutuhan session
@@ -37,17 +38,16 @@
 				$data['error']='';
 				$data['title'] = "etalase";
 				
-				redirect("user");
-				//redirect('utama');
-
+				redirect("user/edit_profil");
+				
 			} else {
 				$data['error']='Tidak ada username atau password tersebut';
-				$this->load->view('template/head');
-				$this->load->view('template/header_bar');
-				$this->load->view('template/content_head');
-				$this->load->view('login'); //view yang diganti
-				$this->load->view('template/content_foot');
-				$this->load->view('template/foot');
+				$this->load->view('template/head', $data);
+				$this->load->view('template/header_bar', $data);
+				$this->load->view('template/content_head', $data);
+				$this->load->view('login', $data); //view yang diganti
+				$this->load->view('template/content_foot', $data);
+				$this->load->view('template/foot', $data);
 			}
 		}
 
