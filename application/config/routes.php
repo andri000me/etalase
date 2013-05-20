@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "etalase";
 $route['(:any)'] = "$1";
 $route['404_override'] = '';
 $route['registrasi'] = 'registrasi';
