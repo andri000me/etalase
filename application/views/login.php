@@ -50,7 +50,7 @@
 									<img src="<?php echo base_url()?>img/logo_full.png" width="150px"/>
 								</center>
 								<br/>
-								Anda belum tergabung dengan Etalase? Bergabunglah <a href="user/daftar">disini</a>
+								Anda belum tergabung dengan Etalase? Bergabunglah <a href="/tubes3/index.php/user/daftar">disini</a>
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
 					</div>
@@ -60,7 +60,7 @@
 							<div class="content">
 								<!-- Login -->
 								<h1>Login</h1>
-
+								<?php echo $error?>
 								<form method="POST" action="<?php echo base_url()?>index.php/login/proses_login">
 									Username<br/>
 									<input type="text" name="username" class="input-form"/><br/>
