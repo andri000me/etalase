@@ -6,7 +6,8 @@
 			parent::__construct();
 
 			$this->load->model('iklan_model');
-
+			$this->load->model('kategori_model');
+			$this->load->model('provinsi_model');
 		}
 
 		public function index(){
@@ -26,6 +27,13 @@
 		//MENAMPILKAN LIST IKLAN BERDASARKAN JENIS IKLAN
 		public function list_iklan(){
 			$id_category_iklan = $this->uri->segment(3);
+
+			//menampilkan nama-nama provinsi untuk search
+			$data['provinsi_model'] = "";
+	        foreach($this->provinsi_model->get_all_provinsi() as $prov){
+	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
+	        }
+
 
 			$data['list_iklan'] = "";
 
@@ -67,8 +75,15 @@
 
 			}
 
+			$nama_kategori = $this->kategori_model->get_kategori_by_id($id_category_iklan);
+			$data['nama_kategori'] = $nama_kategori->nama_kategori;
+			
+
+
+
 			//Menampilkan View
 			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
 			$this->load->view('template/content_head', $data);
 			$this->load->view('list_iklan', $data);
 			$this->load->view('template/content_foot', $data);

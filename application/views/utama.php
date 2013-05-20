@@ -31,6 +31,7 @@
 							<div class="content">
 								<!-- Kategori -->
 								<h1>Kategori</h1>
+								<?php echo $list_kategori ?>
 							</div><!-- content -->
 						</div>						
 					</div>
