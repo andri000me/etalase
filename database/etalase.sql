@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2013 at 12:22 PM
+-- Generation Time: May 20, 2013 at 12:58 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -28,23 +28,22 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 CREATE TABLE IF NOT EXISTS `iklan` (
   `id_iklan` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
-  `nama_kategori` varchar(255) NOT NULL,
-  `sub_kategori` varchar(255) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
   `judul` varchar(255) NOT NULL,
-  `tipe` varchar(255) NOT NULL,
+  `tipe` varchar(255) NOT NULL COMMENT 'tipe iklan, 1 dicari, 2 dijual, 3 disewakan, 4 jasa',
   `harga` varchar(255) NOT NULL,
   `provinsi` varchar(255) NOT NULL,
   `kabkota` varchar(255) NOT NULL,
-  `p_utama` varchar(255) NOT NULL,
+  `p_utama` int(11) NOT NULL COMMENT 'berupa id, isinya menentukan apakah foto 1,2,3,4,5,atau6',
   `kondisi` varchar(255) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
-  `status_nego` varchar(255) NOT NULL,
-  `photo1` varchar(255) NOT NULL,
-  `photo2` varchar(255) NOT NULL,
-  `photo3` varchar(255) NOT NULL,
-  `photo4` varchar(255) NOT NULL,
-  `photo5` varchar(255) NOT NULL,
-  `photo6` varchar(255) NOT NULL,
+  `status_nego` int(11) NOT NULL COMMENT '1 = boleh nego, 0 = tidak boleh nego',
+  `photo1` varchar(1000) DEFAULT NULL,
+  `photo2` varchar(1000) DEFAULT NULL,
+  `photo3` varchar(1000) DEFAULT NULL,
+  `photo4` varchar(1000) DEFAULT NULL,
+  `photo5` varchar(1000) DEFAULT NULL,
+  `photo6` varchar(1000) DEFAULT NULL,
   `waktu_tayang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_iklan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
