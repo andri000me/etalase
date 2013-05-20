@@ -35,7 +35,6 @@ class User_model extends CI_Model{
 	
 	//update user
 	function select_user($username){
-		$this->db->select('id_user, username, bio, photo');
 		$query = $this->db->get_where('user', array('username' => $username));
 		return $query->row();
 	}

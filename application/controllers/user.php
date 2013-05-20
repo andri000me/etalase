@@ -73,7 +73,6 @@ class User extends CI_Controller {
     	$data['title'] = "Edit_Profile";
 			if ($this->session->userdata('LOGGED_IN')) {
 				
-				
 				$this->load->view('template/head');
 				$this->load->view('template/header_bar');
 				$this->load->view('template/content_head');
@@ -83,9 +82,18 @@ class User extends CI_Controller {
 			}else{
 				redirect('etalase');
 			}
-		
-        
     }
+	
+	function logout() {
+			$this->session->sess_destroy();
+			$data['error'] = 'Anda telah keluar.';
+			$this->load->view('template/head');
+			$this->load->view('template/header_bar_utama');
+			$this->load->view('template/content_head');
+			$this->load->view('utama');	//view yang diganti
+			$this->load->view('template/content_foot');
+			$this->load->view('template/foot');
+		}
 
 	
 }
