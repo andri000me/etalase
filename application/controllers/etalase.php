@@ -28,7 +28,7 @@ class Etalase extends CI_Controller {
         }
 
         $this->load->view('template/head');
-		$this->load->view('template/header_bar_utama	');
+		$this->load->view('template/header_bar_utama');
 		$this->load->view('template/content_head');
 		$this->load->view('utama', $data); //view yang diganti
 		$this->load->view('template/content_foot');
