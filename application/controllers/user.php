@@ -39,7 +39,7 @@ class User extends CI_Controller {
         $this->user_model->simpan_user();
         $data['notifikasi'] = 'Data berhasil disimpan';
         $data['judul']='Insert Data Berhasil';
-        $this->load->view('notifikasi', $data);
+        redirect('login');
     }
 
     function profil(){

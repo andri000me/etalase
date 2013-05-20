@@ -30,10 +30,10 @@
 				$userdata = array('username'=>$username,
 								  'LOGGED_IN'=>true);
 				$this->session->set_userdata($userdata);
-				$data['error']='eh error';
+				$data['error']='';
 				$data['title'] = "etalase";
 				
-				redirect("user/profil");
+				redirect("user");
 				//redirect('utama');
 
 			} else {
