@@ -41,6 +41,7 @@
 $route['default_controller'] = "welcome";
 $route['(:any)'] = "$1";
 $route['404_override'] = '';
+$route['registrasi'] = 'registrasi';
 
 
 /* End of file routes.php */

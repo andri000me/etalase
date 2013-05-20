@@ -66,7 +66,7 @@
 								<!-- Daftar -->
 								<h1>Daftar</h1>
 
-								<form>
+								<form action="user_daftar" method="post">
 									Username<br/>
 									<input type="text" name="username" class="input-form"/><br/>
 									Email<br/>
@@ -75,7 +75,7 @@
 									<input type="password" name="password" class="input-form"/><br/>
 									Password lagi<br/>
 									<input type="password" name="password2" class="input-form"/><br/>
-									<input type="submit" class="input-button" value="Daftar"/>
+									<input type="submit" class="input-button" value="Simpan"/>
 
 
 								</form>

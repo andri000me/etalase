@@ -52,7 +52,7 @@
 									<img src="<?php echo base_url()?>img/logo_full.png" width="150px"/>
 								</center>
 								<br/>
-								Anda belum tergabung dengan Etalase? Bergabunglah <a href="#">disini</a>
+								Anda belum tergabung dengan Etalase? Bergabunglah <a href="registrasi/daftar">disini</a>
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
 					</div>
@@ -63,7 +63,7 @@
 								<!-- Login -->
 								<h1>Login</h1>
 
-								<form>
+								<form method="POST" action="<?php echo base_url()?>index.php/registrasi/login">
 									Username<br/>
 									<input type="text" name="username" class="input-form"/><br/>
 									Password<br/>
