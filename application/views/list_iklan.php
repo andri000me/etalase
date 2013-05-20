@@ -46,9 +46,9 @@
 					<div class="kiri">
 						<div class="container_1 border-g">
 							<div class="content">
-							
+								<h1><?php echo $nama_kategori?></h1>
 								<!-- iklan -->
-								<div class="card">
+								<!-- <div class="card">
 									<div class="content">
 										<div class="kiri">
 											<div class="photo border-g">
@@ -69,7 +69,9 @@
 
 										<div class="clear"></div>
 									</div>
-								</div>
+								</div> -->
+
+								<?php echo $list_iklan ?>
 
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
