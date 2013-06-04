@@ -45,6 +45,9 @@
 					<div class="kiri">
 						<div class="container_3 border-g">
 							<div class="content">
+
+								<?php echo $username ?>
+
 								<br/>
 									<a href="edit_profil">
 								Edit profil

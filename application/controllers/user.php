@@ -56,8 +56,14 @@ class User extends CI_Controller {
 
 
     function profil(){
+
+		$username = $this->session->userdata('username');
+
     	$data['judul'] = '';
     	$data['provinsi_model'] = "";
+    	$data['username'] = $username;
+
+
         foreach($this->provinsi_model->get_all_provinsi() as $prov){
         	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
         }
@@ -73,37 +79,52 @@ class User extends CI_Controller {
 	
 	function edit_profil(){
     	$data['title'] = "Edit_Profile";
-			if ($this->session->userdata('LOGGED_IN')) {
-				$this->load->model('user_model');
-				$username = $this->session->userdata("username");
-				$data['username'] = $username;
-				
-				$this->load->view('template/head');
-				$this->load->view('template/header_bar');
-				$this->load->view('template/content_head');
-				$this->load->view('edit_profil',$data); //view yang diganti
-				$this->load->view('template/content_foot');
-				$this->load->view('template/foot');
-				/*
-				$username
-				$nama_lengkap
-				$alamat
-				//$provinsi
-				//$kabupaten
-				$fb
-				$yahoo
-				$twitter
-				$bio
-				$tlp
-				$pin_bb
-				*/
-			}else{
-				redirect('etalase');
-			}
+
+    	$this->sessionlogin->cek_login();
+		$this->load->model('user_model');
+
+		$uid = $this->session->userdata("uid");
+		$userdata = $this->user_model->select_user_by_id($uid);
+
+		$username = $this->session->userdata("username");
+		$nama_lengkap = $userdata->nama_lengkap;
+		$alamat = $userdata->alamat;
+		$provinsi = $userdata->id_provinsi;
+		$kabkota = $userdata->id_kabkota;
+		$fb = $userdata->fb;
+		$yahoo = $userdata->yahoo;
+		$twitter = $userdata->twitter;
+		$bio = $userdata->bio;
+		$tlp = $userdata->tlp;
+		$pin_bb = $userdata->pin_bb;
+
+
+		$data['username'] = $username;
+		$data['nama_lengkap'] = $nama_lengkap;
+		$data['alamat'] = $alamat;
+		$data['provinsi'] = $provinsi;
+		$data['kabkota'] = $kabkota;
+		$data['fb'] = $fb;
+		$data['yahoo'] = $yahoo;
+		$data['twitter'] = $twitter;
+		$data['bio'] = $bio;
+		$data['tlp'] = $tlp;
+		$data['pin_bb'] = $pin_bb;
+
+
+
+
+
+		$this->load->view('template/head');
+		$this->load->view('template/header_bar');
+		$this->load->view('template/content_head');
+		$this->load->view('edit_profil',$data); //view yang diganti
+		$this->load->view('template/content_foot');
+		$this->load->view('template/foot');
     }
 	
 	function simpan_edit_profil(){
-		if ($this->session->userdata('LOGGED_IN')) {
+			$this->sessionlogin->cek_login();
 			$username = $this->session->userdata("username");
 
 			$datauser = $this->user_model->select_user($username);
@@ -125,7 +146,6 @@ class User extends CI_Controller {
 		
 			$this->user_model->update_profil($username, $nama_lengkap, $alamat, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
 			redirect('user/profil');
-		}
 	}
 	
 	public function edit_photo(){
@@ -207,13 +227,15 @@ class User extends CI_Controller {
 	
 	function logout() {
 			$this->session->sess_destroy();
-			$this->load->view('template/head');
-			$this->load->view('template/header_bar_utama');
-			$this->load->view('template/content_head');
-			$this->load->view('utama');	//view yang diganti
-			$this->load->view('template/content_foot');
-			$this->load->view('template/foot');
-		}
+			// $this->load->view('template/head');
+			// $this->load->view('template/header_bar_utama');
+			// $this->load->view('template/content_head');
+			// $this->load->view('utama');	//view yang diganti
+			// $this->load->view('template/content_foot');
+			// $this->load->view('template/foot');
+
+			redirect('etalase/index');
+	}
 
 	
 }

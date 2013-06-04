@@ -18,4 +18,9 @@
 			return $query->result();
 		}
 
+		function get_iklan_by_id_iklan($id_iklan){
+			$query = $this->db->get_where('iklan', array('id_iklan'=>$id_iklan));
+			return $query->row();
+		}
+
 	}

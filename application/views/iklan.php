@@ -48,27 +48,7 @@
 
 								<!-- Judul di atas iklan -->
 
-								<span class="judul_iklan">Judul Iklan</span><br/>
-								<div id="keterangan_iklan">
-									<div class="kiri">
-										<span class="info_small">Lokasi</span>&nbsp&nbsp&nbsp&nbsp
-										<span class="info_small">Kondisi</span>&nbsp&nbsp&nbsp&nbsp
-										<span class="info_small">Waktu Tayang</span>&nbsp&nbsp&nbsp&nbsp
-									</div>
-
-									<div class="kanan">
-										<span class="info_small">Nomor iklan: <b>123456</b></span>
-									</div>
-								</div>
-
-								<div class="clear"></div>
-
-								<hr/>
-								FOTO
-								<hr/>
-								<br/>
-
-								Keterangan
+								<?php echo $konten_detail_iklan ?>
 
 								
 							</div> <!-- Content -->
@@ -77,7 +57,9 @@
 
 					<div class="kanan">
 							<div class="container_3 border-g">
-								<div class="content">
+
+								<?php echo $konten_info_iklan ?>
+								<!-- <div class="content">
 
 									HARGA
 
@@ -95,7 +77,7 @@
 									Nomor Telepon<br/>
 									<span class="judul_user">085251059399</span><br/>
 									
-								</div> <!-- Content -->
+								</div> -->
 							</div> <!-- container_2 -->
 						</div>
 

@@ -56,10 +56,9 @@
 							<div class="content">
 								<br/>
 
-								<!-- Form profil -->
+								<?php echo form_open("iklan/proses_pasang")?>
 
 
-								<form>
 									
 									Tipe iklan:<br/>
 
@@ -72,15 +71,21 @@
 									<br/>
 
 									Judul<br/>
-									<textarea class="input-form-long" style="height:80px"></textarea><br/>
+									<input type="text" class="input-form-long"/><br/>
 									
 									<br/>
 
 									Kategori<br/>
-									<select class="input-form-long">
-										<option>
-											Pilihan sub kategori
-										<option>
+									<select class="input-form-long" name="kategori" onChange="pilihKategoriTambahIklan();" id="select_kategori_tambah_iklan">
+										<?php 
+										foreach ($kategori as $k) {
+										?>
+										<option value="<?php echo $k->id_kategori?>">
+											<?php echo $k->nama_kategori?>
+										</option>
+										<?
+										}
+										?>
 									</select>
 									<br/>
 									Sub Kategori<br/>

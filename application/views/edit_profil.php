@@ -75,11 +75,11 @@
 									<br/>
 									
 									Nama<br/>
-									<input type="text" class="input-form" name="nama_lengkap"/><br/>
+									<input type="text" class="input-form" name="nama_lengkap" value="<?php echo $nama_lengkap?>"/><br/>
 									<br/>
 														
 									Alamat<br/>
-									<textarea  name="alamat" class="input-form" style="height:80px"></textarea><br/>
+									<textarea  name="alamat" class="input-form" style="height:80px"><?php echo $alamat?></textarea><br/>
 
 									<br/>
 									
@@ -101,26 +101,26 @@
 									<br/>
 									
 									Facebook<br/>
-									<input type="text" name="fb" class="input-form"/><br/>
+									<input type="text" name="fb" class="input-form" value="<?php echo $fb?>"/><br/>
 									
 									Yahoo Messenger<br/>
-									<input type="text" name="yahoo" class="input-form"/><br/>
+									<input type="text" name="yahoo" class="input-form" value="<?php echo $yahoo?>"/><br/>
 									
 									Twitter<br/>
-									<input type="text" name="twitter" class="input-form"/><br/>
+									<input type="text" name="twitter" class="input-form" value="<?php echo $twitter?>"/><br/>
 									<br/>
 									
 									Bio<br/>
-									<textarea class="input-form" name="bio" style="height:80px"></textarea><br/>
+									<textarea class="input-form" name="bio" style="height:80px" value="<?php echo $bio?>"></textarea><br/>
 									
 									<br/>
 
 									No. Telepon<br/>
-									<input type="text" name="tlp" class="input-form"/><br/>
+									<input type="text" name="tlp" class="input-form" value="<?php echo $tlp?>"/><br/>
 									<br/>
 									
 									Pin BB<br/>
-									<input type="text" name="pin_bb" class="input-form"/><br/>
+									<input type="text" name="pin_bb" class="input-form" value="<?php echo $pin_bb?>"/><br/>
 
 									<input type="checkbox"/> Tampilkan nomor telepon saya di iklan
 

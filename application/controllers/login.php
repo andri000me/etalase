@@ -18,6 +18,7 @@
 			//Menampilkan View
 			$data['error']='';
 			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar_utama', $data);
 			$this->load->view('template/content_head', $data);
 			$this->load->view('login', $data);
 			$this->load->view('template/content_foot', $data);
@@ -31,9 +32,13 @@
 			$password = $this->input->post('password');
 			
 			if ($this->user_model->cek_username_password($username,$password)) {
+
+				$id_user = $this->user_model->get_id_by_username($username);
+
 				//data untuk kebutuhan session
 				$userdata = array('username'=>$username,
-								  'LOGGED_IN'=>true);
+								  'LOGGED_IN'=>true,
+								  'uid'=>$id_user);
 				$this->session->set_userdata($userdata);
 				$data['error']='';
 				$data['title'] = "etalase";

@@ -21,6 +21,17 @@ class User_model extends CI_Model{
 			return false;
 		}
 	}
+
+	function get_id_by_username($username){
+		$query = $this->db->get_where('user', array('username' => $username));
+		if($query->num_rows()== 1){
+			$result = $query->row();
+
+			return $result->id_user;
+		}else{
+			return null;
+		}
+	}
 	
 	//////=====================================////////////////////
 	function get_user_all()
@@ -95,7 +106,7 @@ class User_model extends CI_Model{
 	}
 
 	function select_user_by_id($id_user){
-		$this->db->select('id_user, username, bio, photo');
+		//$this->db->select('id_user, username, bio, photo');
 		$query = $this->db->get_where('user', array('id_user' => $id_user));
 		return $query->row();
 	}
