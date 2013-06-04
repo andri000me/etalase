@@ -7,7 +7,7 @@
 					</a>
 				</div>
 				<div class="kanan">
-				<a href="#">iklan saya |</a>
+				<a href="<?php echo base_url()?>index.php/user/profil">iklan saya |</a>
 				<a href="<?php echo base_url()?>index.php/iklan/pasang">pasang iklan |</a>
 				<a href="<?php echo base_url()?>index.php/user/logout">Logout</a>
 				</div>

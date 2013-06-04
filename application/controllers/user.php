@@ -9,6 +9,8 @@ class User extends CI_Controller {
 			$this->load->model('user_model');
 			$this->load->library('session');
 			$this->load->model('provinsi_model');
+			$this->load->model('kota_model');
+			$this->load->model('iklan_model');
 		}
 	
 	public function index()
@@ -57,7 +59,10 @@ class User extends CI_Controller {
 
     function profil(){
 
+		$this->sessionlogin->cek_login();
+
 		$username = $this->session->userdata('username');
+		$id_user = $this->session->userdata('uid');
 
     	$data['judul'] = '';
     	$data['provinsi_model'] = "";
@@ -67,6 +72,9 @@ class User extends CI_Controller {
         foreach($this->provinsi_model->get_all_provinsi() as $prov){
         	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
         }
+
+        $data['data_iklan'] = $this->iklan_model->get_iklan_by_id_user($id_user);
+
         $this->load->view('template/head');
 		$this->load->view('template/header_bar');
 		$this->load->view('template/content_head');

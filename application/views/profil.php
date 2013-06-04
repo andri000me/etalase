@@ -61,6 +61,12 @@
 						<div class="container_2p3 border-g">
 							<div class="content">
 							
+								<?php
+
+										foreach ($data_iklan as $data) {
+											$lokasi = $this->kota_model->get_kota_by_id($data->id_kota);
+
+											?>
 								<!-- iklan -->
 								<div class="card">
 									<div class="content">
@@ -69,21 +75,25 @@
 											</div>
 										</div>
 
+
+										
 										<div class="kiri content info_iklan">
-											<b><a href="#">Nama Iklan</a></b><br/>
-											<span class="info_small">Lokasi</span><br/>
-											<span class="info_small">Kondisi</span><br/>
-											<span class="info_small">Harga</span><br/>
-											<span class="info_small">Waktu Tayang</span><br/>
-										</div>
+											<b><a href="#"><?php echo $data->judul?></a></b><br/>
+											<span class="info_small"><?php echo $lokasi->nama_kota?></span><br/>
+											<span class="info_small"><?php echo $data->kondisi?></span><br/>
+											<span class="info_small"><?php echo $data->waktu_tayang?></span><br/>
+										</div>				
 
 										<div class="kanan">
-											<b>Rp 2.000.000</b>
+											<b>Rp <?php echo $data->harga?></b>
 										</div>
 
 										<div class="clear"></div>
 									</div>
 								</div>
+								<?php
+								}
+								?>
 
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->

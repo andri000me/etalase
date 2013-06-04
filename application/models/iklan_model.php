@@ -23,4 +23,9 @@
 			return $query->row();
 		}
 
+		function get_iklan_by_id_user($id_user){
+			$query = $this->db->get_where('iklan', array('id_user'=>$id_user));
+			return $query->result();
+		}
+
 	}

@@ -10,4 +10,9 @@
 			return $query->result();
 		}
 
+		public function get_kota_by_id($id_kota){
+			$query = $this->db->get_where('kota', array('id_kota'=>$id_kota));
+			return $query->row();
+		}
+
 	}
