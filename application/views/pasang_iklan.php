@@ -62,10 +62,10 @@
 									
 									Tipe iklan:<br/>
 
-									<input type="radio" name="tipe"/> Dicari
-									<input type="radio" name="tipe"/> Dijual
-									<input type="radio" name="tipe"/> Disewakan
-									<input type="radio" name="tipe"/> Jasa
+									<input type="radio" name="tipe" value="1"/> Dicari
+									<input type="radio" name="tipe" value="2"/> Dijual
+									<input type="radio" name="tipe" value="3"/> Disewakan
+									<input type="radio" name="tipe" value="4"/> Jasa
 
 									<br/>
 									<br/>
@@ -76,7 +76,8 @@
 									<br/>
 
 									Kategori<br/>
-									<select class="input-form-long" name="kategori" onChange="pilihKategoriTambahIklan();" id="select_kategori_tambah_iklan">
+									<select class="input-form-long" name="kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
+										<option value="-1">Pilih kategori</option>
 										<?php 
 										foreach ($kategori as $k) {
 										?>
@@ -89,10 +90,8 @@
 									</select>
 									<br/>
 									Sub Kategori<br/>
-									<select class="input-form-long">
-										<option>
-											Pilihan sub kategori
-										<option>
+									<select class="input-form-long" id="select_subkategori_tambah_iklan">
+										<option value="-1">Pilihan sub kategori</option>
 									</select>
 									<br/>
 
@@ -103,9 +102,12 @@
 
 									Kondisi<br/>
 									<select class="input-form-long">
-										<option>
-											Pilihan sub kategori
-										<option>
+										<option value="1">
+											Baru
+										</option>
+										<option value="2">
+											Bekas
+										</option>
 									</select>
 									<br/>
 
@@ -121,10 +123,68 @@
 									<br/><br/>
 
 									<input type="submit" class="input-button" value="Update"/>
-									
-
-
 								</form>
+
+								FOTO:
+								<div id="Wrapper">
+
+									<div align="center">
+										<table border="1">
+
+											<!-- gambar 1 -->
+											<tr>
+												<td>
+													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
+														<input name="ImageFile" type="file" />
+														<input type="submit"  id="SubmitButton" value="Upload" />
+													</form>
+												</td>
+												<td>
+													<div id="output1"></div>
+												</td>
+											</tr>
+
+											<!-- gambar 2 -->
+											<tr>
+												<td>
+													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm2">
+														<input name="ImageFile" type="file" />
+														<input type="submit"  id="SubmitButton" value="Upload" />
+													</form>
+												</td>
+												<td>
+													<div id="output2"></div>
+												</td>
+											</tr>
+
+											<!-- gambar 3 -->
+											<tr>
+												<td>
+													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm3">
+														<input name="ImageFile" type="file" />
+														<input type="submit"  id="SubmitButton" value="Upload" />
+													</form>
+												</td>
+												<td>
+													<div id="output3"></div>
+												</td>
+											</tr>
+
+											<!-- gambar 4 -->
+											<tr>
+												<td>
+													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
+														<input name="ImageFile" type="file" />
+														<input type="submit"  id="SubmitButton" value="Upload" />
+													</form>
+												</td>
+												<td>
+													<div id="output1"></div>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
 							</div><!-- content -->
 
 						</div>
@@ -132,3 +192,24 @@
 
 					<div class="clear"></div>
 </div>
+			<script> 
+			$(document).ready(function() { 
+				$('#UploadForm1').on('submit', function(e) {
+					e.preventDefault();
+					$('#SubmitButton').attr('disabled', ''); // disable upload button
+					//show uploading message
+					$("#output1").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+					$(this).ajaxSubmit({
+						target: '#output1',
+						success:  afterSuccess //call function after success
+					});
+				});
+			}); 
+
+			function afterSuccess()  { 
+				$('#UploadForm').resetForm();  // reset form
+				$('#SubmitButton').removeAttr('disabled'); //enable submit button
+
+			} 
+			</script> 
+	

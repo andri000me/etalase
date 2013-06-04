@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2013 at 08:52 PM
+-- Generation Time: Jun 04, 2013 at 11:26 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -42,8 +42,6 @@ CREATE TABLE IF NOT EXISTS `iklan` (
   `photo2` varchar(1000) DEFAULT NULL,
   `photo3` varchar(1000) DEFAULT NULL,
   `photo4` varchar(1000) DEFAULT NULL,
-  `photo5` varchar(1000) DEFAULT NULL,
-  `photo6` varchar(1000) DEFAULT NULL,
   `waktu_tayang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_iklan`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -52,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `iklan` (
 -- Dumping data for table `iklan`
 --
 
-INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `p_utama`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `photo5`, `photo6`, `waktu_tayang`) VALUES
-(1, 1, 1, 'Mobil Aku', '2', '30000000', 1, 1, 1, 1, 'Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang In', 1, NULL, NULL, NULL, NULL, NULL, NULL, '2013-05-20 14:33:45');
+INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `p_utama`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `waktu_tayang`) VALUES
+(1, 1, 1, 'Mobil Aku', '2', '30000000', 1, 1, 1, 1, 'Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang In', 1, NULL, NULL, NULL, NULL, '2013-05-20 14:33:45');
 
 -- --------------------------------------------------------
 
@@ -714,7 +712,7 @@ CREATE TABLE IF NOT EXISTS `sub_kategori` (
   `id_kategori` int(11) NOT NULL,
   `nama_sub_kategori` varchar(255) NOT NULL,
   PRIMARY KEY (`id_sub_kategori`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1018 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1019 ;
 
 --
 -- Dumping data for table `sub_kategori`
@@ -1737,7 +1735,8 @@ INSERT INTO `sub_kategori` (`id_sub_kategori`, `id_kategori`, `nama_sub_kategori
 (1014, 41, 'Telepon'),
 (1015, 41, 'Telepon Satelit'),
 (1016, 41, 'VoIP dan Aksesoris'),
-(1017, 41, 'Walkie Talkie dan Handy Talkie');
+(1017, 41, 'Walkie Talkie dan Handy Talkie'),
+(1018, 42, 'Lainnya dari kategori lain-lain');
 
 -- --------------------------------------------------------
 

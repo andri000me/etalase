@@ -7,15 +7,27 @@
 */
 
 
-class Api extends CI_Controller {
+class api extends CI_Controller {
 
 	public function __construct(){
-		$this->load->database('kategori');
-		$this->load->database('sub_kategori');
+		parent::__construct();
+
+		$this->load->model('kategori_model');
+		$this->load->model('sub_kategori_model');
 	}
 
 	public function getSubKategori($id_kategori){
-		$kategori = 
+		$sub_kategori = $this->sub_kategori_model->get_subkategori_by_kategori($id_kategori);
+
+		$result = array();
+		foreach ($sub_kategori as $key) {
+			array_push($result, array('nama'=>$key->nama_sub_kategori,
+								 	  'id'=>$key->id_sub_kategori));
+		}
+
+		$result = json_encode($result);
+
+		echo $result;
 	}
 }
 	
