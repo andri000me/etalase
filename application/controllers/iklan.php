@@ -19,19 +19,45 @@
 
 			//cek sudah login
 			$this->sessionlogin->cek_login();
-				$data['title'] = "Pasang iklan";
-				$data['kategori'] = $this->kategori_model->get_all_kategori();
-				
-				//Menampilkan View
-				$this->load->view('template/head', $data);
-				$this->load->view('template/header_bar', $data);
-				$this->load->view('template/content_head', $data);
-				$this->load->view('pasang_iklan', $data);
-				$this->load->view('template/content_foot', $data);
-				$this->load->view('template/foot', $data);
+			$data['title'] = "Pasang iklan";
+			$data['kategori'] = $this->kategori_model->get_all_kategori();
+			
+			//Menampilkan View
+			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
+			$this->load->view('template/content_head', $data);
+			$this->load->view('pasang_iklan', $data);
+			$this->load->view('template/content_foot', $data);
+			$this->load->view('template/foot', $data);
 		}
 
 		public function proses_pasang(){
+			$this->sessionlogin->cek_login();
+
+			$setuju = $this->input->post("setuju");
+
+			if ($setuju == "setuju") {
+				$tipe = $this->input->post("tipe");
+				$judul = $this->input->post("judul");
+				$id_kategori = $this->input->post("id_kategori");
+				$id_sub_kategori = $this->input->post("id_sub_kategori");
+				$id_user = $this->session->userdata("uid");
+				$harga = $this->input->post("harga");
+				$kondisi = $this->input->post("kondisi");
+				$status_nego = $this->input->post("status_nego");
+
+				$this->iklan_model->insert_iklan(array("id_user"=>$id_user,
+													   "id_kategori"=>$id_kategori,
+													   "id_sub_kategori"=>$id_sub_kategori,
+													   "judul"=>$judul,
+													   "tipe"=>$tipe,
+													   "harga"=>$harga,
+													   "status_nego"=>$status_nego
+													   ));
+				redirect("user/profil");
+			}
+
+			
 
 		}
 
@@ -249,11 +275,7 @@
 				We can render image to user's browser or store information in the database
 				For demo, we are going to output results on browser.
 				*/
-				echo '<table width="100%" border="0" cellpadding="4" cellspacing="0">';
-				echo '<tr>';
-				echo '<td align="center"><img src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image"></td>';
-				echo '</tr>';
-				echo '</table>';
+				echo '<img src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
 
 				/*
 				// Insert info into database table!

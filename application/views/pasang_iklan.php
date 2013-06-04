@@ -47,6 +47,64 @@
 							<div class="content">
 								<br/>
 								
+								FOTO:
+								<div id="Wrapper">
+
+									<div align="center">
+										<table border="1">
+
+											<!-- gambar 1 -->
+											<tr>
+												<td>
+													Gambar utama
+													<div id="output1">
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
+															<input name="ImageFile" type="file" />
+															<input type="submit"  id="SubmitButton" value="Upload" />
+														</form>
+													</div>
+												</td>
+											</tr>
+
+											<!-- gambar 2 -->
+											<tr>
+												<td>
+													<div id="output2">
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm2">
+															<input name="ImageFile" type="file" />
+															<input type="submit"  id="SubmitButton" value="Upload" />
+														</form>
+													</div>
+												</td>
+											</tr>
+
+											<!-- gambar 3 -->
+											<tr>
+												<td>
+													<div id="output3">
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm3">
+															<input name="ImageFile" type="file" />
+															<input type="submit"  id="SubmitButton" value="Upload" />
+														</form>
+													</div>
+												</td>
+											</tr>
+
+											<!-- gambar 4 -->
+											<tr>
+												<td>
+													<div id="output4">
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm4">
+															<input name="ImageFile" type="file" />
+															<input type="submit"  id="SubmitButton" value="Upload" />
+														</form>
+													</div>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+
 							</div> <!-- Content -->
 						</div> <!-- container_2 -->
 					</div>
@@ -71,12 +129,12 @@
 									<br/>
 
 									Judul<br/>
-									<input type="text" class="input-form-long"/><br/>
+									<input type="text" class="input-form-long" name="judul"/><br/>
 									
 									<br/>
 
 									Kategori<br/>
-									<select class="input-form-long" name="kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
+									<select class="input-form-long" name="id_kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
 										<option value="-1">Pilih kategori</option>
 										<?php 
 										foreach ($kategori as $k) {
@@ -90,18 +148,18 @@
 									</select>
 									<br/>
 									Sub Kategori<br/>
-									<select class="input-form-long" id="select_subkategori_tambah_iklan">
+									<select class="input-form-long" name="id_sub_kategori" id="select_subkategori_tambah_iklan">
 										<option value="-1">Pilihan sub kategori</option>
 									</select>
 									<br/>
 
 									<br/>
 									Harga<br/>
-									<input type="text" class="input-form-long"/><br/>
+									<input type="text" class="input-form-long" name="harga"/><br/>
 									<br/>
 
 									Kondisi<br/>
-									<select class="input-form-long">
+									<select class="input-form-long" name="kondisi">
 										<option value="1">
 											Baru
 										</option>
@@ -113,78 +171,23 @@
 
 									<br/>
 									Deskripsi<br/>
-									<textarea class="input-form-long"></textarea>
+									<textarea class="input-form-long" name="deskripsi"></textarea>
+
+
+									<br/>
+									Status nego<br/>
+									<input type="radio" name="status_nego" value="1"/> Boleh nego
+									<input type="radio" name="status_nego" value="0"/> Tidak boleh nego
+
+									<br/><br/>
+									<input type="checkbox" name="setuju" value="setuju"/> Saya telah membaca persyaratan, setuju
 
 
 									<br/><br/>
-									<input type="checkbox"/> Saya telah membaca persyaratan, setuju
 
-
-									<br/><br/>
-
-									<input type="submit" class="input-button" value="Update"/>
+									<input type="submit" class="input-button" value="Tambah iklan"/>
 								</form>
 
-								FOTO:
-								<div id="Wrapper">
-
-									<div align="center">
-										<table border="1">
-
-											<!-- gambar 1 -->
-											<tr>
-												<td>
-													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
-														<input name="ImageFile" type="file" />
-														<input type="submit"  id="SubmitButton" value="Upload" />
-													</form>
-												</td>
-												<td>
-													<div id="output1"></div>
-												</td>
-											</tr>
-
-											<!-- gambar 2 -->
-											<tr>
-												<td>
-													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm2">
-														<input name="ImageFile" type="file" />
-														<input type="submit"  id="SubmitButton" value="Upload" />
-													</form>
-												</td>
-												<td>
-													<div id="output2"></div>
-												</td>
-											</tr>
-
-											<!-- gambar 3 -->
-											<tr>
-												<td>
-													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm3">
-														<input name="ImageFile" type="file" />
-														<input type="submit"  id="SubmitButton" value="Upload" />
-													</form>
-												</td>
-												<td>
-													<div id="output3"></div>
-												</td>
-											</tr>
-
-											<!-- gambar 4 -->
-											<tr>
-												<td>
-													<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
-														<input name="ImageFile" type="file" />
-														<input type="submit"  id="SubmitButton" value="Upload" />
-													</form>
-												</td>
-												<td>
-													<div id="output1"></div>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
 							</div><!-- content -->
 
 						</div>
@@ -201,6 +204,39 @@
 					$("#output1").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
 					$(this).ajaxSubmit({
 						target: '#output1',
+						success:  afterSuccess //call function after success
+					});
+				});
+
+				$('#UploadForm2').on('submit', function(e) {
+					e.preventDefault();
+					$('#SubmitButton').attr('disabled', ''); // disable upload button
+					//show uploading message
+					$("#output2").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+					$(this).ajaxSubmit({
+						target: '#output2',
+						success:  afterSuccess //call function after success
+					});
+				});
+
+				$('#UploadForm3').on('submit', function(e) {
+					e.preventDefault();
+					$('#SubmitButton').attr('disabled', ''); // disable upload button
+					//show uploading message
+					$("#output3").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+					$(this).ajaxSubmit({
+						target: '#output3',
+						success:  afterSuccess //call function after success
+					});
+				});
+
+				$('#UploadForm4').on('submit', function(e) {
+					e.preventDefault();
+					$('#SubmitButton').attr('disabled', ''); // disable upload button
+					//show uploading message
+					$("#output4").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+					$(this).ajaxSubmit({
+						target: '#output4',
 						success:  afterSuccess //call function after success
 					});
 				});

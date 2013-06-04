@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2013 at 11:26 PM
+-- Generation Time: Jun 04, 2013 at 11:52 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `iklan` (
   `id_iklan` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
+  `id_subkategori` int(11) NOT NULL,
   `judul` varchar(255) NOT NULL,
   `tipe` varchar(255) NOT NULL COMMENT 'tipe iklan, 1 dicari, 2 dijual, 3 disewakan, 4 jasa',
   `harga` varchar(255) NOT NULL,
@@ -50,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `iklan` (
 -- Dumping data for table `iklan`
 --
 
-INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `p_utama`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `waktu_tayang`) VALUES
-(1, 1, 1, 'Mobil Aku', '2', '30000000', 1, 1, 1, 1, 'Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang In', 1, NULL, NULL, NULL, NULL, '2013-05-20 14:33:45');
+INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `id_subkategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `p_utama`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `waktu_tayang`) VALUES
+(1, 1, 1, 1, 'Mobil Aku', '2', '30000000', 1, 1, 1, 1, 'Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang In', 1, NULL, NULL, NULL, NULL, '2013-06-04 23:51:32');
 
 -- --------------------------------------------------------
 
