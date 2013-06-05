@@ -1,0 +1,1 @@
+No direct directory ngererek

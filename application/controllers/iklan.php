@@ -186,10 +186,6 @@
 			$data['kota'] = $this->kota_model->get_kota_by_id($data_iklan->id_kota);
 
 			$data['title'] = 'Iklan Etalase';
-			$data['provinsi_model'] = "";
-	        foreach($this->provinsi_model->get_all_provinsi() as $prov){
-	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
-	        }
 
 			//Menampilkan View
 			$this->load->view('template/head', $data);
@@ -205,12 +201,6 @@
 		//MENAMPILKAN LIST IKLAN BERDASARKAN JENIS IKLAN
 		public function list_iklan(){
 			$id_category_iklan = $this->uri->segment(3);
-
-			//menampilkan nama-nama provinsi untuk search
-			$data['provinsi_model'] = "";
-	        foreach($this->provinsi_model->get_all_provinsi() as $prov){
-	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
-	        }
 
 
 			$data['list_iklan'] = "";

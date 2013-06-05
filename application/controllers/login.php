@@ -11,10 +11,6 @@
 
 		public function index(){
 			$data['title'] = 'Iklan Etalase';
-			$data['provinsi_model'] = "";
-	        foreach($this->provinsi_model->get_all_provinsi() as $prov){
-	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
-	        }
 			//Menampilkan View
 			$data['error']='';
 			$this->load->view('template/head', $data);

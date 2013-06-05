@@ -23,10 +23,6 @@ class Etalase extends CI_Controller {
     {
         $data['judul'] = '';
 
-        $data['provinsi_model'] = "";
-        foreach($this->provinsi_model->get_all_provinsi() as $prov){
-        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
-        }
 
         $data['list_kategori'] = "";
 

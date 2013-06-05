@@ -13,20 +13,10 @@
 							<div class="content">
 								<br/>
 
-								<!-- Form profil -->
-
-								<form action="<?php echo base_url()?>index.php/user/edit_photo" method="post" enctype="multipart/form-data" name="FormUpload" id="FormUpload">
-									Foto<br/>
-
-									<img src="<?php echo base_url()?>img/foto.png" height="80px" width="80px"/>
-									<input type="file">
-									<br/>
-									<br/>
-									<input type="button" class="input-button" value="upload foto"/>
-								</form>
 								<hr/>
+
 								<form action="<?php echo base_url()?>index.php/user/simpan_edit_profil" method="POST">
-									
+								
 									Username<br/>
 									<?php echo $username?><br/>
 									<br/>
@@ -101,6 +91,39 @@
 
 
 								</form>
+
+
+							<hr/>
+
+								Foto profil
+								<div id="output" class="photo_profile">
+									<?php
+									if ($photo != "") {
+										echo "<img src='".base_url()."uploads/profile/".$photo."' width='100%' height='100%'/>";
+									}else{
+										echo "belum ada pp";
+									}
+									?>
+								</div>
+								<form action="<?php echo base_url()?>index.php/user/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm">
+										<input name="ImageFile" type="file" id="inputFile"/>
+										<input type="submit"  id="SubmitButton" value="Upload" class="btn"/>
+								</form>
+								
+
+
+								<!--
+								<form action="<?php echo base_url()?>index.php/user/edit_photo" method="post" enctype="multipart/form-data" name="FormUpload" id="FormUpload">
+									Foto<br/>
+
+									<img src="<?php echo base_url()?>img/foto.png" height="80px" width="80px"/>
+									<input type="file">
+									<br/>
+									<br/>
+									<input type="button" class="input-button" value="upload foto"/>
+								</form>
+								-->
+
 							</div><!-- content -->
 
 						</div>
@@ -108,3 +131,43 @@
 
 					<div class="clear"></div>
 					</div>
+
+					<script> 
+
+
+
+			$(document).ready(function() { 
+
+					$('#UploadForm').on('submit', function(e) {
+						e.preventDefault();
+						$('#SubmitButton').attr('disabled', ''); // disable upload button
+						//show uploading message
+						$("#output").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+						$(this).ajaxSubmit({
+							target: '#output',
+							success:  afterSuccess, //call function after success
+						});
+					});
+
+				
+
+			}); 
+
+
+
+			function afterSuccess()  { 
+				$('#SubmitButton').removeAttr('disabled'); //enable submit button
+
+				$('#UploadForm').hide();
+
+				
+			} 
+
+			function retryUpload(kode){
+				$('#output'+kode).html("");
+				$("#UploadForm"+kode).resetForm();
+				$('#UploadForm'+kode).show();
+			}
+
+
+			</script>
