@@ -71,7 +71,7 @@
 								<form action="<?php echo base_url()?>index.php/user/simpan_edit_profil" method="POST">
 									
 									Username<br/>
-									<input type="text" name="username" class="input-form" value=<?php echo $username?> /><br/>
+									<?php echo $username?><br/>
 									<br/>
 									
 									Nama<br/>
@@ -82,21 +82,33 @@
 									<textarea  name="alamat" class="input-form" style="height:80px"><?php echo $alamat?></textarea><br/>
 
 									<br/>
-									
 									Provinsi<br/>
-									<select class="input-form">
-										<option>
-											Pilihan sub kategori
-										<option>
+									<select class="input-form-long" name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+										<option value="-1">Pilih provinsi</option>
+										<?php 
+										foreach ($provinsi_list as $k) {
+										?>
+										<option value="<?php echo $k->id_provinsi?>" <?php if($provinsi == $k->id_provinsi) echo "selected";?> >
+											<?php echo $k->nama_provinsi?>
+										</option>
+										<?
+										}
+										?>
 									</select>
 									<br/>
-									Kabupaten/Kota<br/>
-									<select class="input-form">
-										<option>
-											Pilihan sub kategori
-										<option>
+									kota<br/>
+									<select class="input-form-long" name="id_kota" id="select_kota_tambah_iklan">
+										<option value="-1">Pilihan kota</option>
+										<?php 
+										foreach ($kota_list as $k) {
+										?>
+										<option value="<?php echo $k->id_kota?>" <?php if($kabkota == $k->id_kota) echo "selected";?> >
+											<?php echo $k->nama_kota?>
+										</option>
+										<?
+										}
+										?>
 									</select>
-									<br/>
 
 									<br/>
 									

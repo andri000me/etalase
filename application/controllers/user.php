@@ -107,6 +107,10 @@ class User extends CI_Controller {
 		$pin_bb = $userdata->pin_bb;
 
 
+
+		$data['provinsi_list'] = $this->provinsi_model->get_all_provinsi();
+		$data['kota_list']	   = $this->kota_model->get_kota_where_prov($provinsi);
+
 		$data['username'] = $username;
 		$data['nama_lengkap'] = $nama_lengkap;
 		$data['alamat'] = $alamat;
@@ -134,17 +138,17 @@ class User extends CI_Controller {
 	function simpan_edit_profil(){
 			$this->sessionlogin->cek_login();
 			$username = $this->session->userdata("username");
+			$id_user = $this->session->userdata("uid");
 
 			$datauser = $this->user_model->select_user($username);
 
 			$data['username'] = $username;
 			
 			//melakukan edit data
-			$username = $this->input->post('username');
 			$nama_lengkap = $this->input->post('nama_lengkap');
 			$alamat = $this->input->post('alamat');
-			//$provinsi  = $this->input->post('provinsi');
-			//$kabupaten  = $this->input->post('kabupaten');
+			$id_provinsi  = $this->input->post('id_provinsi');
+			$id_kota  = $this->input->post('id_kota');
 			$fb  = $this->input->post('fb');
 			$yahoo = $this->input->post('yahoo');
 			$twitter = $this->input->post('twitter');
@@ -152,8 +156,9 @@ class User extends CI_Controller {
 			$tlp = $this->input->post('tlp');
 			$pin_bb = $this->input->post('pin_bb');
 		
-			$this->user_model->update_profil($username, $nama_lengkap, $alamat, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
-			redirect('user/profil');
+			$this->user_model->update_profil_by_id_user($id_user,$nama_lengkap, $alamat, $id_provinsi, $id_kota,
+														$fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
+			redirect('user/edit_profil');
 	}
 	
 	public function edit_photo(){

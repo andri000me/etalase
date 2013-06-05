@@ -3,7 +3,7 @@
 			<div id="header-content">
 				<div class="kiri">
 					<a href="<?php echo base_url()?>">
-						<img src="<?php echo base_url()?>img/logo_small.png" width="20px"/>
+						<img src="<?php echo base_url()?>img/logo_small.png" width="50px"/>
 					</a>
 				</div>
 				<div class="kanan">

@@ -214,7 +214,7 @@
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
 		}
-
+		
 		public function upload_gambar(){
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan

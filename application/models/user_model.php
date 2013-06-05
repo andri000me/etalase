@@ -137,6 +137,20 @@ class User_model extends CI_Model{
 										'tlp'=>$tlp,
 										'pin_bb'=>$pin_bb));
 	}
+
+	function update_profil_by_id_user($id_user, $nama_lengkap, $alamat, $id_provinsi, $id_kabkota, $fb, $yahoo, $twitter, $bio, $tlp, $pin_bb){
+		$this->db->where('id_user', $id_user);
+		$this->db->update('user', array('nama_lengkap'=>$nama_lengkap,
+										'id_provinsi'=>$id_provinsi,
+										'id_kabkota'=>$id_kabkota,
+										'alamat'=>$alamat,
+										'fb'=>$fb,
+										'yahoo'=>$yahoo,
+										'twitter'=>$twitter,
+										'bio'=>$bio,
+										'tlp'=>$tlp,
+										'pin_bb'=>$pin_bb));
+	}
 	
 	
 }

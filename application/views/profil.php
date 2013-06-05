@@ -61,6 +61,8 @@
 						<div class="container_2p3 border-g">
 							<div class="content">
 							
+								<!-- List iklan terpasang -->
+
 								<?php
 
 										foreach ($data_iklan as $data) {
@@ -96,13 +98,14 @@
 									<div class="content">
 										<div class="kiri">
 											<div class="photo border-g">
+												<img src="<?php echo base_url()."uploads/".$data->photo1?>" width="100%" height="100%"></a>
 											</div>
 										</div>
 
 
 										
 										<div class="kiri content info_iklan">
-											<b><a href="#"><?php echo $data->judul?></a></b><br/>
+											<b><a href="<?php echo base_url()."index.php/iklan/detail/".$data->id_iklan?>"><?php echo $data->judul?></a></b><br/>
 											<span class="info_small"><?php echo $tipe?></span><br/>
 											<span class="info_small"><?php echo $lokasi->nama_kota?></span><br/>
 											<span class="info_small"><?php echo $data->kondisi?></span><br/>
