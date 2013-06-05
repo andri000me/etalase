@@ -19,12 +19,23 @@
 												<td>
 													<?php echo ($i==1?"<center><b>Gambar utama</b></center>":"");?>
 													
-														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar/-1" method="post" enctype="multipart/form-data" id="UploadForm<?php echo $i?>">
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar/<?php echo $id_iklan?>" method="post" enctype="multipart/form-data" id="UploadForm<?php echo $i?>"
+															<?php echo (${"photo".$i}!=""?'style="display: none;"':'')?>>
 															<input name="ImageFile" type="file" id="inputFile<?php echo $i?>"/>
 															<input type="submit"  id="SubmitButton<?php echo $i?>" value="Upload" class="btn"/>
 															<input type="hidden" name="posisi" value="<?php echo $i?>"/>
 														</form>
 													<div id="output<?php echo $i?>">
+														<!-- tampilkan foto iklan -->
+														<?php
+															if (${"photo".$i}!="") {
+																echo '<a href="#" onclick="hapusGambar('.$i.');"><i class="icon-trash"></i>Hapus<br/></a>';
+																echo "<img class='img-polaroid' src='".base_url()."uploads/".${"photo".$i}."' id='gambar_".$i."' width='250px'>";
+															}else{
+																echo "";
+															}
+
+														?>
 													</div>
 												</td>
 											</tr>
@@ -47,29 +58,29 @@
 							<div class="content">
 								<br/>
 
-								<?php echo form_open("iklan/proses_pasang")?>
+								<?php echo form_open("iklan/proses_edit")?>
 
 
 									
 									Tipe iklan:<br/>
 
 									<label class="radio inline">
-										<input type="radio" name="tipe" value="1"/> Dicari
+										<input type="radio" name="tipe" value="1" <?php echo($tipe=="1"?'checked':"")?> /> Dicari
 									</label>
 									<label class="radio inline">
-										<input type="radio" name="tipe" value="2"/> Dijual
+										<input type="radio" name="tipe" value="2" <?php echo($tipe=="2"?'checked':"")?>/> Dijual
 									</label>
 									<label class="radio inline">
-										<input type="radio" name="tipe" value="3"/> Disewakan
+										<input type="radio" name="tipe" value="3" <?php echo($tipe=="3"?'checked':"")?>/> Disewakan
 									</label>
 									<label class="radio inline">
-										<input type="radio" name="tipe" value="4"/> Jasa
+										<input type="radio" name="tipe" value="4" <?php echo($tipe=="4"?'checked':"")?>/> Jasa
 									</label>
 									<br/>
 									<br/>
 
 									Judul<br/>
-									<input type="text" class="input-form-long" name="judul"/><br/>
+									<input type="text" class="input-form-long" name="judul" value="<?php echo $judul?>"/><br/>
 									
 									<br/>
 
@@ -77,9 +88,9 @@
 									<select class="input-form-long" name="id_kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
 										<option value="-1">Pilih kategori</option>
 										<?php 
-										foreach ($kategori as $k) {
+										foreach ($list_kategori as $k) {
 										?>
-										<option value="<?php echo $k->id_kategori?>">
+										<option value="<?php echo $k->id_kategori?>" <?php echo ($id_kategori == $k->id_kategori?"selected":"");?>>
 											<?php echo $k->nama_kategori?>
 										</option>
 										<?
@@ -90,6 +101,15 @@
 									Sub Kategori<br/>
 									<select class="input-form-long" name="id_sub_kategori" id="select_subkategori_tambah_iklan">
 										<option value="-1">Pilihan sub kategori</option>
+										<?php 
+										foreach ($list_sub_kategori as $k) {
+										?>
+										<option value="<?php echo $k->id_sub_kategori?>" <?php echo ($id_sub_kategori == $k->id_sub_kategori?"selected":"");?>>
+											<?php echo $k->nama_sub_kategori?>
+										</option>
+										<?
+										}
+										?>
 									</select>
 									<br/>
 									<br/>
@@ -99,9 +119,9 @@
 									<select class="input-form-long" name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
 										<option value="-1">Pilih provinsi</option>
 										<?php 
-										foreach ($provinsi as $k) {
+										foreach ($list_provinsi as $k) {
 										?>
-										<option value="<?php echo $k->id_provinsi?>">
+										<option value="<?php echo $k->id_provinsi?>" <?php if($id_provinsi == $k->id_provinsi) echo "selected";?> >
 											<?php echo $k->nama_provinsi?>
 										</option>
 										<?
@@ -112,19 +132,28 @@
 									kota<br/>
 									<select class="input-form-long" name="id_kota" id="select_kota_tambah_iklan">
 										<option value="-1">Pilihan kota</option>
+										<?php 
+										foreach ($list_kota as $k) {
+										?>
+										<option value="<?php echo $k->id_kota?>" <?php if($id_kota == $k->id_kota) echo "selected";?> >
+											<?php echo $k->nama_kota?>
+										</option>
+										<?
+										}
+										?>
 									</select>
 									<br/>
 									<br/>
 									Harga<br/>
-									<input type="text" class="input-form-long" name="harga"/><br/>
+									<input type="text" class="input-form-long" name="harga" value="<?php echo $harga?>"/><br/>
 									<br/>
 
 									Kondisi<br/>
 									<select class="input-form-long" name="kondisi">
-										<option value="1">
+										<option value="1" <?echo ($kondisi=="1"?"selected":"")?>>
 											Baru
 										</option>
-										<option value="2">
+										<option value="2" <?echo ($kondisi=="2"?"selected":"")?>>
 											Bekas
 										</option>
 									</select>
@@ -132,30 +161,32 @@
 
 									<br/>
 									Deskripsi<br/>
-									<textarea class="input-form-long" name="deskripsi" rows="5"></textarea>
+									<textarea class="input-form-long" name="deskripsi" rows="5"><?php echo $deskripsi?></textarea>
 
 
 									<br/>
 									<b>Status nego</b>
 									<br/>
 									<label class="radio">
-										<input type="radio" name="status_nego" value="1"/> Boleh nego
+										<input type="radio" name="status_nego" value="1" <?php echo($status_nego=="1"?'checked':"")?> /> Boleh nego
 									</label>
 									<label class="radio">
-										<input type="radio" name="status_nego" value="0"/> Tidak boleh nego
+										<input type="radio" name="status_nego" value="0" <?php echo($status_nego=="0"?'checked':"")?> /> Tidak boleh nego
 									</label>
 
 									<br/><br/>
 									<input type="checkbox" name="setuju" value="setuju"/> Saya telah membaca persyaratan, setuju
 
-									<input type="hidden" name="photo1" id="photo1" value=""/>
-									<input type="hidden" name="photo2" id="photo2" value=""/>
-									<input type="hidden" name="photo3" id="photo3" value=""/>
-									<input type="hidden" name="photo4" id="photo4" value=""/>
+									<input type="hidden" name="photo1" id="photo1" value="<?php echo $photo1?>"/>
+									<input type="hidden" name="photo2" id="photo2" value="<?php echo $photo2?>"/>
+									<input type="hidden" name="photo3" id="photo3" value="<?php echo $photo3?>"/>
+									<input type="hidden" name="photo4" id="photo4" value="<?php echo $photo4?>"/>
+
+									<input type="hidden" name="id_iklan" value="<?php echo $id_iklan?>"/>
 
 									<br/><br/>
 
-									<input type="submit" class="input-button" value="Tambah iklan" onSubmit="finalSubmit"/>
+									<input type="submit" class="input-button" value="Edit iklan" onSubmit="finalSubmit"/>
 								</form>
 
 							</div><!-- content -->
@@ -229,7 +260,7 @@
 				var fileNameIndex = alamat.lastIndexOf("/")+1;
 				var fileName = alamat.substr(fileNameIndex);
 				$.ajax({
-					  url: "<?php echo base_url()?>"+"index.php/iklan/deleteImage/"+fileName,
+					  url: "<?php echo base_url()?>"+"index.php/iklan/deleteEditImage/"+fileName+"/<?php echo $id_iklan?>/"+kode,
 					  cache: false
 					}).done(function(msg) {
 					  $('#output'+kode).html(msg);

@@ -11,5 +11,10 @@
 			$query = $this->db->get('provinsi');
 			return $query->result();
 		}
-	
+		
+		public function get_provinsi_by_id($id_provinsi){
+			$query = $this->db->get_where('provinsi', array("id_provinsi"=>$id_provinsi));
+			return $query->row();
+		}
+
 	}

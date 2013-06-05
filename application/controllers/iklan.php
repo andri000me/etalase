@@ -8,6 +8,9 @@
 			$this->load->model('iklan_model');
 			$this->load->model('kategori_model');
 			$this->load->model('provinsi_model');
+			$this->load->model('user_model');
+			$this->load->model('sub_kategori_model');
+			$this->load->model('kota_model');
 		}
 
 		public function index(){
@@ -28,7 +31,53 @@
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);
 			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
 			$this->load->view('pasang_iklan', $data);
+			$this->load->view('template/content_foot', $data);
+			$this->load->view('template/foot', $data);
+		}
+
+		public function edit($id_iklan){	
+			$this->load->helper('form');
+			//cek sudah login
+			$this->sessionlogin->cek_login();
+
+			//data iklan
+			$data_iklan = $this->iklan_model->get_iklan_by_id_iklan($id_iklan);
+
+			$data['id_iklan'] = $data_iklan->id_iklan;
+			$data['tipe'] = $data_iklan->tipe;
+			$data['id_kategori'] = $data_iklan->id_kategori;
+			$data['id_sub_kategori'] = $data_iklan->id_sub_kategori;
+			$data['judul'] = $data_iklan->judul;
+			$data['tipe'] = $data_iklan->tipe;
+			$data['harga'] = $data_iklan->harga;
+			$data['id_provinsi'] = $data_iklan->id_provinsi;
+			$data['id_kota'] = $data_iklan->id_kota;
+			$data['kondisi'] = $data_iklan->kondisi;
+			$data['deskripsi'] = $data_iklan->deskripsi;
+			$data['status_nego'] = $data_iklan->status_nego;
+			$data['photo1'] = $data_iklan->photo1;
+			$data['photo2'] = $data_iklan->photo2;
+			$data['photo3'] = $data_iklan->photo3;
+			$data['photo4'] = $data_iklan->photo4;
+
+
+			$data['title'] = "Edit iklan";
+
+
+			$data['list_kategori'] = $this->kategori_model->get_all_kategori();
+			$data['list_sub_kategori'] = $this->sub_kategori_model->get_subkategori_by_kategori($data['id_kategori']);
+			
+			$data['list_provinsi'] = $this->provinsi_model->get_all_provinsi();
+			$data['list_kota']	   = $this->kota_model->get_kota_where_prov($data['id_provinsi']);
+
+			//Menampilkan View
+			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
+			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
+			$this->load->view('edit_iklan', $data);
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
 		}
@@ -77,13 +126,64 @@
 
 		}
 
+		public function proses_edit(){
+			$this->sessionlogin->cek_login();
+
+			$setuju = $this->input->post("setuju");
+
+			if ($setuju == "setuju") {
+				$tipe = $this->input->post("tipe");
+				$judul = $this->input->post("judul");
+				$id_kategori = $this->input->post("id_kategori");
+				$id_sub_kategori = $this->input->post("id_sub_kategori");
+				$id_user = $this->session->userdata("uid");
+				$harga = $this->input->post("harga");
+				$kondisi = $this->input->post("kondisi");
+				$status_nego = $this->input->post("status_nego");
+				$id_provinsi = $this->input->post("id_provinsi");
+				$id_kota = $this->input->post("id_kota");
+				$photo1 = $this->input->post("photo1");
+				$photo2 = $this->input->post("photo2");
+				$photo3 = $this->input->post("photo3");
+				$photo4 = $this->input->post("photo4");
+				$deskripsi = $this->input->post("deskripsi");
+				$id_iklan = $this->input->post("id_iklan");
+
+				$this->iklan_model->set_iklan_by_id_iklan($id_iklan, array("id_user"=>$id_user,
+																		   "id_kategori"=>$id_kategori,
+																		   "id_sub_kategori"=>$id_sub_kategori,
+																		   "judul"=>$judul,
+																		   "tipe"=>$tipe,
+																		   "harga"=>$harga,
+																		   "status_nego"=>$status_nego,
+																		   "id_provinsi"=>$id_provinsi,
+																		   "id_kota"=>$id_kota,
+																		   "photo1"=>$photo1,
+																		   "photo2"=>$photo2,
+																		   "photo3"=>$photo3,
+																		   "photo4"=>$photo4,
+																		   "deskripsi"=>$deskripsi
+																		   ));
+				redirect("user/profil");
+			}
+
+			
+
+		}
+
+
 
 		public function detail(){
 			$id_iklan = $this->uri->segment(3);
 
 			$data_iklan = $this->iklan_model->get_iklan_by_id_iklan($id_iklan);
 
+			$data['pembuat_iklan'] = $this->user_model->select_user_by_id($data_iklan->id_user);
+
 			$data['data_iklan'] = $data_iklan;
+
+			$data['provinsi'] = $this->provinsi_model->get_provinsi_by_id($data_iklan->id_provinsi);
+			$data['kota'] = $this->kota_model->get_kota_by_id($data_iklan->id_kota);
 
 			$data['title'] = 'Iklan Etalase';
 			$data['provinsi_model'] = "";
@@ -95,6 +195,7 @@
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);
 			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
 			$this->load->view('iklan', $data);
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
@@ -159,12 +260,13 @@
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);
 			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
 			$this->load->view('list_iklan', $data);
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
 		}
 
-		public function upload_gambar(){
+		public function upload_gambar($id_iklan){
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan
 
@@ -241,9 +343,13 @@
 				We can render image to user's browser or store information in the database
 				For demo, we are going to output results on browser.
 				*/
-				echo '<a href="#" onclick="hapusGambar('.$posisi.');">Hapus<br/></a>';
-				echo '<img id="gambar_'.$posisi.'" src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
+				echo '<a href="#" onclick="hapusGambar('.$posisi.');"><i class="icon-trash"></i>Hapus<br/></a>';
+				echo '<img class="img-polaroid" id="gambar_'.$posisi.'" src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
 
+				if ($id_iklan != -1) {
+					$this->iklan_model->set_iklan_by_id_iklan($id_iklan, array("photo".$posisi=>$NewImageName));
+				}
+				
 				/*
 				// Insert info into database table!
 				mysql_query("INSERT INTO myImageTable (ImageName, ThumbName, ImgPath)
@@ -259,12 +365,37 @@
 			$this->sessionlogin->cek_login();
 
 			$alamat = getcwd()."/uploads/".$nama_image;
-			if (unlink($alamat)){
-				echo "";	
+
+			if (file_exists($alamat)) {
+				if (unlink($alamat)){
+					echo "";	
+				}
 			}else{
-				echo "no delete";
+				die("Tidak bisa menghapus foto. Coba refresh laman");
 			}
 			
+		}
+
+
+		/**
+		 *	Hapus gambar buat edit
+		 */
+		function deleteEditImage($nama_image){
+			$id_iklan = $this->uri->segment(4);
+			$gambar_ke = $this->uri->segment(5);
+
+			$this->sessionlogin->cek_login();
+
+			$alamat = getcwd()."/uploads/".$nama_image;
+			if (file_exists($alamat)) {
+				if (unlink($alamat)){
+					$this->iklan_model->set_iklan_by_id_iklan($id_iklan, array("photo".$gambar_ke=>""));
+					echo "";	
+				}
+			}else{
+				die("Tidak bisa menghapus foto. Coba refresh laman");
+			}
+
 		}
 
 		// This function will proportionally resize image 

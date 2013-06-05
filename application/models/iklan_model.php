@@ -28,4 +28,9 @@
 			return $query->result();
 		}
 
+		function set_iklan_by_id_iklan($id_iklan, $array){
+			$this->db->where("id_iklan", $id_iklan);
+			$this->db->update('iklan', $array);
+		}
+
 	}

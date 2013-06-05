@@ -20,6 +20,7 @@
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar_utama', $data);
 			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
 			$this->load->view('login', $data);
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
@@ -50,6 +51,7 @@
 				$this->load->view('template/head', $data);
 				$this->load->view('template/header_bar', $data);
 				$this->load->view('template/content_head', $data);
+				$this->load->view('template/search_bar', $data);
 				$this->load->view('login', $data); //view yang diganti
 				$this->load->view('template/content_foot', $data);
 				$this->load->view('template/foot', $data);

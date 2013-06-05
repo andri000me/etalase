@@ -1,45 +1,3 @@
-				<div id="profil-bar">
-
-					<div id="profil-kiri" class="kiri">
-						<div id="profil-photo">
-							
-						</div>
-					</div>
-					
-					<div id="profil-kanan" class="kanan">
-
-						<div class="kanan">
-							<div class="container_1">
-								<div class="content">
-									<b>Cari di Etalase.com</b>
-									<!-- Pencarian -->
-									<form>
-										Cari
-										<input type="text" class="input-form">
-
-										<select class="input-form">
-											<?php echo $provinsi_model?>
-										</select>
-
-										<select class="input-form">
-											<option>
-												Pilihan sub kategori
-											<option>
-										</select>
-
-										<input type="submit" class="input-button" value="Cari"/>
-									</form>
-								</div>
-							</div>	
-						</div>
-
-					</div>
-					
-					
-
-					<div class="clear"></div>
-				</div>
-
 				<div id="kategori">
 
 					<div class="kiri">
@@ -98,7 +56,7 @@
 									<div class="content">
 										<div class="kiri">
 											<div class="photo border-g">
-												<img src="<?php echo base_url()."uploads/".$data->photo1?>" width="100%" height="100%"></a>
+												<img src="<?php echo base_url().($data->photo1!=""?"uploads/".$data->photo1:"img/empty_pic.png")?>" width="100%" height="100%"></a>
 											</div>
 										</div>
 
@@ -112,8 +70,22 @@
 											<span class="info_small"><?php echo $data->waktu_tayang?></span><br/>
 										</div>				
 
-										<div class="kanan">
+										<div class="kanan rata-kanan">
 											<b>Rp <?php echo $data->harga?></b>
+											<br/>
+											<div class="btn-group">
+												  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+												  Pengaturan iklan  <span class="caret"></span>
+												  </a>
+												  <ul class="dropdown-menu rata-kiri">
+												    <li>
+												    	<a href="<?php echo base_url()."index.php/iklan/edit/".$data->id_iklan?>"><i class='icon-edit'></i> Edit iklan</a>
+												    </li>
+												    <li>
+												    	<a href="#"><i class='icon-trash'></i> Hapus iklan</a>
+												    </li>
+												  </ul>
+											</div>
 										</div>
 
 										<div class="clear"></div>
