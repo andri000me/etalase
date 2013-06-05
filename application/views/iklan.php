@@ -81,8 +81,8 @@
 
 								<div class='content'>
 
-									<?php echo $data_iklan->harga?>
-
+									<h3>Rp <?php echo $data_iklan->harga?></h3>
+									<?php echo ($data_iklan->status_nego==1?"bisa nego":"tidak bisa nego")?>
 									<hr/>
 									<div class='kiri'>
 										<img src='<?php echo base_url()?>img/foto.png' height='80px' width='80px'/>

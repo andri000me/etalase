@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2013 at 11:52 PM
+-- Generation Time: Jun 05, 2013 at 11:45 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -29,13 +29,12 @@ CREATE TABLE IF NOT EXISTS `iklan` (
   `id_iklan` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
-  `id_subkategori` int(11) NOT NULL,
+  `id_sub_kategori` int(11) NOT NULL,
   `judul` varchar(255) NOT NULL,
   `tipe` varchar(255) NOT NULL COMMENT 'tipe iklan, 1 dicari, 2 dijual, 3 disewakan, 4 jasa',
-  `harga` varchar(255) NOT NULL,
+  `harga` double NOT NULL,
   `id_provinsi` int(11) NOT NULL,
   `id_kota` int(11) NOT NULL,
-  `p_utama` int(11) NOT NULL COMMENT 'berupa id, isinya menentukan apakah foto 1,2,3,4,5,atau6',
   `kondisi` int(11) NOT NULL COMMENT '1 = baru, 2 = bekas',
   `deskripsi` varchar(10000) NOT NULL,
   `status_nego` int(11) NOT NULL COMMENT '1 = boleh nego, 0 = tidak boleh nego',
@@ -45,14 +44,20 @@ CREATE TABLE IF NOT EXISTS `iklan` (
   `photo4` varchar(1000) DEFAULT NULL,
   `waktu_tayang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_iklan`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `iklan`
 --
 
-INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `id_subkategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `p_utama`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `waktu_tayang`) VALUES
-(1, 1, 1, 1, 'Mobil Aku', '2', '30000000', 1, 1, 1, 1, 'Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang Ini adalah punya saya yang In', 1, NULL, NULL, NULL, NULL, '2013-06-04 23:51:32');
+INSERT INTO `iklan` (`id_iklan`, `id_user`, `id_kategori`, `id_sub_kategori`, `judul`, `tipe`, `harga`, `id_provinsi`, `id_kota`, `kondisi`, `deskripsi`, `status_nego`, `photo1`, `photo2`, `photo3`, `photo4`, `waktu_tayang`) VALUES
+(8, 1, 42, 1018, 'Ketua Baru', '3', 50000, 9, 84, 0, 'Emangnya\n\napa\n\nhahaha\n\nlalala', 1, '', '', '', '', '2013-06-05 21:11:07'),
+(9, 1, 3, 97, 'Kebegoan tingkat tinggi', '0', 124141, 2, 25, 0, '', 1, '', '', '', '', '2013-06-05 17:57:57'),
+(10, 1, 3, 96, 'Dijual Bayi Berkualitas Tinggi', '2', 1000, 9, 84, 0, 'Sering e''e, bau, makanya dijual', 1, '', '', '', '', '2013-06-05 20:36:05'),
+(11, 1, 2, 91, 'Majleh Dew', '3', 124, 2, 29, 0, 'didaur ulang dari limbah ceewwat', 1, 'screen-shot-2013-06-04-at-9.49.48-am-951085763.png', 'screen-shot-2013-05-30-at-10.59.58-pm-318273853.png', '', '', '2013-06-05 18:13:15'),
+(12, 1, 37, 966, 'Wastafel Unyu', '1', 30000000, 9, 84, 0, 'Yakin anda akan semakin rajin menyikat gigi. Wastafel yang sangat mirip kartu ini juga akan memanjakan anak anda sampai keblinger. Yakin!', 1, '9-686630478.png', 'screen-shot-2013-05-30-at-10.40.30-am-1280905620.png', '', '', '2013-06-05 23:30:45'),
+(13, 1, 37, 966, 'Wastafel Unyu', '2', 30000000, 9, 84, 0, 'Yakin anda akan semakin rajin menyikat gigi. Wastafel yang sangat mirip kartu ini juga akan memanjakan anak anda sampai keblinger. Yakin!', 1, 'screen-shot-2013-05-31-at-1.46.16-am-653790850.png', '', 'screen-shot-2013-05-30-at-12.01.33-pm-575346243.png', '', '2013-06-05 21:04:48'),
+(14, 1, 39, 996, 'Pisau keramat', '2', 5000000, 6, 59, 0, 'pedang ajaib', 1, 'poster_3-1309920242.png', '', '', '', '2013-06-05 23:38:10');
 
 -- --------------------------------------------------------
 
@@ -1764,13 +1769,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `photo` varchar(255) NOT NULL,
   `tgl_gabung` date NOT NULL,
   `status_dipercaya` varchar(255) NOT NULL,
-  `tampilkan_no_tlp` varchar(255) NOT NULL,
+  `tampilkan_no_tlp` int(1) NOT NULL COMMENT '1 = tampil, 0 = nggak',
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama_lengkap`, `id_provinsi`, `id_kabkota`, `alamat`, `email`, `fb`, `yahoo`, `twitter`, `bio`, `tlp`, `pin_bb`, `kode_pos`, `photo`, `tgl_gabung`, `status_dipercaya`, `tampilkan_no_tlp`) VALUES
-(1, 'giri', '123', '', '', '', 'Jalan G. Bromo 1', 'oberon4mine@yahoo.com', '', '', '', '', '085251059399', '', '', '', '0000-00-00', '', '');
+(1, 'giri', '123', 'Giri Prahasta Putra', '14', '216', 'Jalan G. Bromo 1 No.14\nSampit\nKalimantan Tengah\n74312', 'oberon4mine@yahoo.com', 'giripp', 'oberon4mine', 'igrir', 'Orang keren tapi bersahaja\n\nangcat anal!', '085251059397', '', '', '8-381421840.png', '0000-00-00', '', 0),
+(2, 'giri2', '123', 'Giri Prahasta Putra', '-1', '-1', '', 'oberon4mine@yahoo.com', '', '', '', '', '', '', '', '', '0000-00-00', '', 0);

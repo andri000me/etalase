@@ -72,6 +72,26 @@ class User extends CI_Controller {
 		$this->load->view('template/content_foot');
 		$this->load->view('template/foot'); 
     }
+
+    //profil individu
+    function p($id_user){
+
+    	$data_user = $this->user_model->select_user_by_id($id_user);
+
+    	$data['judul'] = '';
+    	$data['username'] = $data_user->username;
+
+        $data['data_iklan'] = $this->iklan_model->get_iklan_by_id_user($id_user);
+
+        $this->load->view('template/head');
+		$this->load->view('template/header_bar');
+		$this->load->view('template/content_head');
+		$this->load->view('template/search_bar', $data);
+		$this->load->view('profil', $data); //view yang diganti
+		$this->load->view('template/content_foot');
+		$this->load->view('template/foot'); 
+    }
+	
 	
 	//EDIT USER
 	
