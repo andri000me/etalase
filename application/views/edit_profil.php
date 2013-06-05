@@ -32,16 +32,16 @@
 									<br/>
 									
 									Nama<br/>
-									<input type="text" class="input-form" name="nama_lengkap" value="<?php echo $nama_lengkap?>"/><br/>
+									<input type="text" required class="input-form" name="nama_lengkap" value="<?php echo $nama_lengkap?>"/><br/>
 									<br/>
 														
 									Alamat<br/>
-									<textarea  name="alamat" class="input-form" style="height:80px"><?php echo $alamat?></textarea><br/>
+									<textarea  name="alamat" required class="input-form" style="height:80px"><?php echo $alamat?></textarea><br/>
 
 									<br/>
 									Provinsi<br/>
-									<select class="input-form-long" name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
-										<option value="-1">Pilih provinsi</option>
+									<select class="input-form-long" required name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+										<option value="">Pilih provinsi</option>
 										<?php 
 										foreach ($provinsi_list as $k) {
 										?>
@@ -54,8 +54,8 @@
 									</select>
 									<br/>
 									kota<br/>
-									<select class="input-form-long" name="id_kota" id="select_kota_tambah_iklan">
-										<option value="-1">Pilihan kota</option>
+									<select class="input-form-long" required name="id_kota" id="select_kota_tambah_iklan">
+										<option value="">Pilihan kota</option>
 										<?php 
 										foreach ($kota_list as $k) {
 										?>
@@ -80,7 +80,7 @@
 									<br/>
 									
 									Bio<br/>
-									<textarea class="input-form" name="bio" style="height:80px"><?php echo $bio?></textarea><br/>
+									<textarea class="input-form" required name="bio" style="height:80px"><?php echo $bio?></textarea><br/>
 									
 									<br/>
 

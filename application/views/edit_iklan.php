@@ -74,7 +74,7 @@
 										<input type="radio" name="tipe" value="3" <?php echo($tipe=="3"?'checked':"")?>/> Disewakan
 									</label>
 									<label class="radio inline">
-										<input type="radio" name="tipe" value="4" <?php echo($tipe=="4"?'checked':"")?>/> Jasa
+										<input type="radio"  required name="tipe" value="4" <?php echo($tipe=="4"?'checked':"")?>/> Jasa
 									</label>
 									<br/>
 									<br/>
@@ -85,8 +85,8 @@
 									<br/>
 
 									Kategori<br/>
-									<select class="input-form-long" name="id_kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
-										<option value="-1">Pilih kategori</option>
+									<select class="input-form-long" required name="id_kategori" onChange="pilihKategoriTambahIklan('<?php echo base_url()?>');" id="select_kategori_tambah_iklan">
+										<option value="">Pilih kategori</option>
 										<?php 
 										foreach ($list_kategori as $k) {
 										?>
@@ -99,8 +99,8 @@
 									</select>
 									<br/>
 									Sub Kategori<br/>
-									<select class="input-form-long" name="id_sub_kategori" id="select_subkategori_tambah_iklan">
-										<option value="-1">Pilihan sub kategori</option>
+									<select class="input-form-long" required name="id_sub_kategori" id="select_subkategori_tambah_iklan">
+										<option value="">Pilihan sub kategori</option>
 										<?php 
 										foreach ($list_sub_kategori as $k) {
 										?>
@@ -116,8 +116,8 @@
 
 									<b>Lokasi</b><br/>
 									Provinsi<br/>
-									<select class="input-form-long" name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
-										<option value="-1">Pilih provinsi</option>
+									<select class="input-form-long" required name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+										<option value="">Pilih provinsi</option>
 										<?php 
 										foreach ($list_provinsi as $k) {
 										?>
@@ -130,8 +130,8 @@
 									</select>
 									<br/>
 									kota<br/>
-									<select class="input-form-long" name="id_kota" id="select_kota_tambah_iklan">
-										<option value="-1">Pilihan kota</option>
+									<select class="input-form-long" required name="id_kota" id="select_kota_tambah_iklan">
+										<option value="">Pilihan kota</option>
 										<?php 
 										foreach ($list_kota as $k) {
 										?>
@@ -171,11 +171,11 @@
 										<input type="radio" name="status_nego" value="1" <?php echo($status_nego=="1"?'checked':"")?> /> Boleh nego
 									</label>
 									<label class="radio">
-										<input type="radio" name="status_nego" value="0" <?php echo($status_nego=="0"?'checked':"")?> /> Tidak boleh nego
+										<input type="radio" name="status_nego" value="0"  required <?php echo($status_nego=="0"?'checked':"")?> /> Tidak boleh nego
 									</label>
 
 									<br/><br/>
-									<input type="checkbox" name="setuju" value="setuju"/> Saya telah membaca persyaratan, setuju
+									<input type="checkbox" name="setuju" value="setuju" required/> Saya telah membaca persyaratan, setuju
 
 									<input type="hidden" name="photo1" id="photo1" value="<?php echo $photo1?>"/>
 									<input type="hidden" name="photo2" id="photo2" value="<?php echo $photo2?>"/>

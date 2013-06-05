@@ -11,7 +11,7 @@ function pilihKategoriTambahIklan(_url){
 
 	  var obj = eval("(function(){return " +msg+ ";})()");
 	  var count = obj.length;
-	  var result = "<option value=>Pilih sub kategori</option>";
+	  var result = "<option value=''>Pilih sub kategori</option>";
 
 	  for (i=0;i<count;i++) {
 	  	result = result+"<option value='"+obj[i].id+"'>"+obj[i].nama+"</option>";
@@ -37,7 +37,7 @@ function pilihProvinsiTambahIklan(_url){
 
 	  var obj = eval("(function(){return " +msg+ ";})()");
 	  var count = obj.length;
-	  var result = "<option value=>Pilih kota</option>";
+	  var result = "<option value=''>Pilih kota</option>";
 
 	  for (i=0;i<count;i++) {
 	  	result = result+"<option value='"+obj[i].id+"'>"+obj[i].nama+"</option>";
