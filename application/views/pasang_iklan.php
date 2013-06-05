@@ -64,9 +64,9 @@
 														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm<?php echo $i?>">
 															<input name="ImageFile" type="file" id="inputFile<?php echo $i?>"/>
 															<input type="submit"  id="SubmitButton<?php echo $i?>" value="Upload" />
-															<input type="hidden" name="posisi" value="1"/>
+															<input type="hidden" name="posisi" value="<?php echo $i?>"/>
 														</form>
-													<div id="output1">
+													<div id="output<?php echo $i?>">
 													</div>
 												</td>
 											</tr>
@@ -178,10 +178,14 @@
 									<br/><br/>
 									<input type="checkbox" name="setuju" value="setuju"/> Saya telah membaca persyaratan, setuju
 
+									<input type="hidden" name="photo1" id="photo1" value=""/>
+									<input type="hidden" name="photo2" id="photo2" value=""/>
+									<input type="hidden" name="photo3" id="photo3" value=""/>
+									<input type="hidden" name="photo4" id="photo4" value=""/>
 
 									<br/><br/>
 
-									<input type="submit" class="input-button" value="Tambah iklan"/>
+									<input type="submit" class="input-button" value="Tambah iklan" onSubmit="finalSubmit"/>
 								</form>
 
 							</div><!-- content -->
@@ -192,6 +196,26 @@
 					<div class="clear"></div>
 </div>
 			<script> 
+
+			$(document).ajaxComplete(function(event,request, settings) {
+				for (kode = 1; kode <=4 ;kode++) {
+					//masukkan nama gambar di form utama
+					console.log("ini gambar" + $('#gambar_'+kode).attr('src'));
+					var alamat = $("#gambar_" + kode).attr('src');
+
+					if (alamat != null) {
+
+						var fileNameIndex = alamat.lastIndexOf("/")+1;
+						var fileName = alamat.substr(fileNameIndex);
+
+						console.log("masukkan " + fileName);
+						$('#photo'+kode).val(fileName);	
+					}
+					
+				}
+			});
+
+
 			$(document).ready(function() { 
 
 
@@ -202,10 +226,10 @@
 						e.preventDefault();
 						$('#SubmitButton').attr('disabled', ''); // disable upload button
 						//show uploading message
-						$("#output1").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+						$("#output<?php echo $i?>").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
 						$(this).ajaxSubmit({
 							target: '#output<?php echo $i?>',
-							success:  afterSuccess(<?php echo $i?>) //call function after success
+							success:  afterSuccess(<?php echo $i?>), //call function after success
 						});
 					});
 
@@ -218,10 +242,13 @@
 
 			}); 
 
+
+
 			function afterSuccess(kode)  { 
 				$('#SubmitButton'+kode).removeAttr('disabled'); //enable submit button
 
 				$('#UploadForm'+kode).hide();
+
 				
 			} 
 
@@ -235,17 +262,20 @@
 					  url: "<?php echo base_url()?>"+"index.php/iklan/deleteImage/"+fileName,
 					  cache: false
 					}).done(function(msg) {
-					  $('#output1').html(msg);
+					  $('#output'+kode).html(msg);
 					  $("#UploadForm"+kode).resetForm();
 					  $('#UploadForm'+kode).show();
+					  $('#photo'+kode).val("");
 					});
 					
 			}
 
 			function retryUpload(kode){
-				$('#output1').html("");
+				$('#output'+kode).html("");
 				$("#UploadForm"+kode).resetForm();
 				$('#UploadForm'+kode).show();
 			}
+
+
 			</script> 
 	

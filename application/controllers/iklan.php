@@ -49,7 +49,10 @@
 				$status_nego = $this->input->post("status_nego");
 				$id_provinsi = $this->input->post("id_provinsi");
 				$id_kota = $this->input->post("id_kota");
-
+				$photo1 = $this->input->post("photo1");
+				$photo2 = $this->input->post("photo2");
+				$photo3 = $this->input->post("photo3");
+				$photo4 = $this->input->post("photo4");
 
 				$this->iklan_model->insert_iklan(array("id_user"=>$id_user,
 													   "id_kategori"=>$id_kategori,
@@ -59,7 +62,11 @@
 													   "harga"=>$harga,
 													   "status_nego"=>$status_nego,
 													   "id_provinsi"=>$id_provinsi,
-													   "id_kota"=>$id_kota
+													   "id_kota"=>$id_kota,
+													   "photo1"=>$photo1,
+													   "photo2"=>$photo2,
+													   "photo3"=>$photo3,
+													   "photo4"=>$photo4
 													   ));
 				redirect("user/profil");
 			}
@@ -285,7 +292,7 @@
 				We can render image to user's browser or store information in the database
 				For demo, we are going to output results on browser.
 				*/
-				echo '<a href="#" onclick="hapusGambar(1);">Hapus<br/></a>';
+				echo '<a href="#" onclick="hapusGambar('.$posisi.');">Hapus<br/></a>';
 				echo '<img id="gambar_'.$posisi.'" src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
 
 				/*
