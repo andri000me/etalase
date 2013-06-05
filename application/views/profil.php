@@ -126,7 +126,7 @@
 											<b><a href="<?php echo base_url()."index.php/iklan/detail/".$data->id_iklan?>"><?php echo $data->judul?></a></b><br/>
 											<span class="info_small"><?php echo $tipe?></span><br/>
 											<span class="info_small"><?php echo $lokasi->nama_kota?></span><br/>
-											<span class="info_small"><?php echo $data->kondisi?></span><br/>
+											<span class="info_small"><?php echo $kondisi?></span><br/>
 											<span class="info_small"><?php echo $data->waktu_tayang?></span><br/>
 										</div>				
 

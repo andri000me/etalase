@@ -103,6 +103,7 @@
 				$photo3 = $this->input->post("photo3");
 				$photo4 = $this->input->post("photo4");
 				$deskripsi = $this->input->post("deskripsi");
+				$kondisi = $this->input->post("kondisi");
 
 				$this->iklan_model->insert_iklan(array("id_user"=>$id_user,
 													   "id_kategori"=>$id_kategori,
@@ -117,7 +118,8 @@
 													   "photo2"=>$photo2,
 													   "photo3"=>$photo3,
 													   "photo4"=>$photo4,
-													   "deskripsi"=>$deskripsi
+													   "deskripsi"=>$deskripsi,
+													   "kondisi"=>$kondisi
 													   ));
 				redirect("user/profil");
 			}
@@ -148,6 +150,7 @@
 				$photo4 = $this->input->post("photo4");
 				$deskripsi = $this->input->post("deskripsi");
 				$id_iklan = $this->input->post("id_iklan");
+				$kondisi = $this->input->post("kondisi");
 
 				$this->iklan_model->set_iklan_by_id_iklan($id_iklan, array("id_user"=>$id_user,
 																		   "id_kategori"=>$id_kategori,
@@ -162,7 +165,8 @@
 																		   "photo2"=>$photo2,
 																		   "photo3"=>$photo3,
 																		   "photo4"=>$photo4,
-																		   "deskripsi"=>$deskripsi
+																		   "deskripsi"=>$deskripsi,
+																		   "kondisi"=>$kondisi
 																		   ));
 				redirect("user/profil");
 			}
