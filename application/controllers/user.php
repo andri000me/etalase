@@ -105,7 +105,7 @@ class User extends CI_Controller {
 		$bio = $userdata->bio;
 		$tlp = $userdata->tlp;
 		$pin_bb = $userdata->pin_bb;
-
+		$tampilkan_no_tlp = $userdata->tampilkan_no_tlp;
 
 
 		$data['provinsi_list'] = $this->provinsi_model->get_all_provinsi();
@@ -122,6 +122,7 @@ class User extends CI_Controller {
 		$data['bio'] = $bio;
 		$data['tlp'] = $tlp;
 		$data['pin_bb'] = $pin_bb;
+		$data['tampilkan_no_tlp'] = $tampilkan_no_tlp;
 
 
 
@@ -155,9 +156,21 @@ class User extends CI_Controller {
 			$bio = $this->input->post('bio');
 			$tlp = $this->input->post('tlp');
 			$pin_bb = $this->input->post('pin_bb');
+
+			$tampilkan_no_tlp = ($this->input->post('tampilkan_no_tlp')=="on"?1:0);
 		
-			$this->user_model->update_profil_by_id_user($id_user,$nama_lengkap, $alamat, $id_provinsi, $id_kota,
-														$fb, $yahoo, $twitter, $bio, $tlp, $pin_bb);
+
+			$this->user_model->update_profil_by_id_user($id_user, array('nama_lengkap'=>$nama_lengkap,
+																        'id_provinsi'=>$id_provinsi,
+																        'id_kabkota'=>$id_kota,
+																        'alamat'=>$alamat,
+																        'fb'=>$fb,
+																        'yahoo'=>$yahoo,
+																        'twitter'=>$twitter,
+																        'bio'=>$bio,
+																        'tlp'=>$tlp,
+																        'pin_bb'=>$pin_bb,
+																        'tampilkan_no_tlp'=>$tampilkan_no_tlp));
 			redirect('user/edit_profil');
 	}
 	

@@ -53,6 +53,7 @@
 				$photo2 = $this->input->post("photo2");
 				$photo3 = $this->input->post("photo3");
 				$photo4 = $this->input->post("photo4");
+				$deskripsi = $this->input->post("deskripsi");
 
 				$this->iklan_model->insert_iklan(array("id_user"=>$id_user,
 													   "id_kategori"=>$id_kategori,
@@ -66,7 +67,8 @@
 													   "photo1"=>$photo1,
 													   "photo2"=>$photo2,
 													   "photo3"=>$photo3,
-													   "photo4"=>$photo4
+													   "photo4"=>$photo4,
+													   "deskripsi"=>$deskripsi
 													   ));
 				redirect("user/profil");
 			}
@@ -81,74 +83,21 @@
 
 			$data_iklan = $this->iklan_model->get_iklan_by_id_iklan($id_iklan);
 
-			if(count($data_iklan)){
-				$data['title'] = 'Iklan Etalase';
-				$data['provinsi_model'] = "";
-		        foreach($this->provinsi_model->get_all_provinsi() as $prov){
-		        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
-		        }
+			$data['data_iklan'] = $data_iklan;
 
-				$data['konten_info_iklan'] = "<div class='content'>
+			$data['title'] = 'Iklan Etalase';
+			$data['provinsi_model'] = "";
+	        foreach($this->provinsi_model->get_all_provinsi() as $prov){
+	        	$data['provinsi_model'] .= "<option value='$prov->id_provinsi'>$prov->nama_provinsi</option>";
+	        }
 
-										".$data_iklan->harga."
-
-										<hr/>
-										<div class='kiri'>
-											<img src='".base_url()."img/foto.png' height='80px' width='80px'/>
-										</div>
-										<div class='kiri content' id='iklan_userabout'>
-											<span class='judul_user'><a href='#''>username</a></span><br/>
-											<span class='info_small'>Member sejak: 2 Agustus 2010</span>
-										</div>
-
-										<div class='clear'></div>
-										<br/>
-										Nomor Telepon<br/>
-										<span class='judul_user'>085251059399</span><br/>
-										</div>";
-
-
-				$kondisi = "";
-				if ($data_iklan->kondisi == 1 ) {
-					$kondisi = "baru";
-				}else{
-					$kondisi = "bekas";
-				}
-
-
-				$data['konten_detail_iklan'] = "<span class='judul_iklan'>".$data_iklan->judul."</span><br/>
-													<div id='keterangan_iklan'>
-														<div class='kiri'>
-															<span class='info_small'>".$data_iklan->id_provinsi."</span>&nbsp&nbsp&nbsp&nbsp
-															<span class='info_small'>".$kondisi."</span>&nbsp&nbsp&nbsp&nbsp
-															<span class='info_small'>".$data_iklan->waktu_tayang."</span>&nbsp&nbsp&nbsp&nbsp
-														</div>
-
-														<div class='kanan'>
-															<span class='info_small'>Nomor iklan: <b>".$data_iklan->id_iklan."</b></span>
-														</div>
-													</div>
-
-													<div class='clear'></div>
-
-													<hr/>
-													FOTO
-													<hr/>
-													<br/>
-
-													".$data_iklan->deskripsi;
-
-
-
-				//Menampilkan View
-				$this->load->view('template/head', $data);
-				$this->load->view('template/header_bar', $data);
-				$this->load->view('template/content_head', $data);
-				$this->load->view('iklan', $data);
-				$this->load->view('template/content_foot', $data);
-				$this->load->view('template/foot', $data);
-			}
-
+			//Menampilkan View
+			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
+			$this->load->view('template/content_head', $data);
+			$this->load->view('iklan', $data);
+			$this->load->view('template/content_foot', $data);
+			$this->load->view('template/foot', $data);
 			
 		}
 
@@ -214,7 +163,7 @@
 			$this->load->view('template/content_foot', $data);
 			$this->load->view('template/foot', $data);
 		}
-		
+
 		public function upload_gambar(){
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan

@@ -123,7 +123,7 @@
 									<br/>
 									
 									Bio<br/>
-									<textarea class="input-form" name="bio" style="height:80px" value="<?php echo $bio?>"></textarea><br/>
+									<textarea class="input-form" name="bio" style="height:80px"><?php echo $bio?></textarea><br/>
 									
 									<br/>
 
@@ -134,7 +134,7 @@
 									Pin BB<br/>
 									<input type="text" name="pin_bb" class="input-form" value="<?php echo $pin_bb?>"/><br/>
 
-									<input type="checkbox"/> Tampilkan nomor telepon saya di iklan
+									<input type="checkbox" name="tampilkan_no_tlp" <?php if($tampilkan_no_tlp == 1) echo "checked";?>/> Tampilkan nomor telepon saya di iklan
 
 
 									<br/><br/>
