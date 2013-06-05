@@ -152,7 +152,28 @@
 										<option value="-1">Pilihan sub kategori</option>
 									</select>
 									<br/>
+									<br/>
 
+									<b>Lokasi</b><br/>
+									Provinsi<br/>
+									<select class="input-form-long" name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+										<option value="-1">Pilih provinsi</option>
+										<?php 
+										foreach ($provinsi as $k) {
+										?>
+										<option value="<?php echo $k->id_provinsi?>">
+											<?php echo $k->nama_provinsi?>
+										</option>
+										<?
+										}
+										?>
+									</select>
+									<br/>
+									kota<br/>
+									<select class="input-form-long" name="id_kota" id="select_kota_tambah_iklan">
+										<option value="-1">Pilihan kota</option>
+									</select>
+									<br/>
 									<br/>
 									Harga<br/>
 									<input type="text" class="input-form-long" name="harga"/><br/>

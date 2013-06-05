@@ -65,7 +65,31 @@
 
 										foreach ($data_iklan as $data) {
 											$lokasi = $this->kota_model->get_kota_by_id($data->id_kota);
+											$tipe = "";
+											$kondisi = "";
+											switch ($data->tipe) {
+												case 1:
+													$tipe = "dicari";
+													break;
+												case 2:
+													$tipe = "dijual";
+													break;
+												case 3:
+													$tipe = "disewakan";
+													break;
+												case 4:
+													$tipe = "jasa";
+													break;
+											}
 
+											switch($data->kondisi){
+												case 1:
+													$kondisi = "baru";
+													break;
+												case 2:
+													$kondisi = "bekas";
+													break;
+											}
 											?>
 								<!-- iklan -->
 								<div class="card">
@@ -79,6 +103,7 @@
 										
 										<div class="kiri content info_iklan">
 											<b><a href="#"><?php echo $data->judul?></a></b><br/>
+											<span class="info_small"><?php echo $tipe?></span><br/>
 											<span class="info_small"><?php echo $lokasi->nama_kota?></span><br/>
 											<span class="info_small"><?php echo $data->kondisi?></span><br/>
 											<span class="info_small"><?php echo $data->waktu_tayang?></span><br/>

@@ -21,7 +21,9 @@
 			$this->sessionlogin->cek_login();
 			$data['title'] = "Pasang iklan";
 			$data['kategori'] = $this->kategori_model->get_all_kategori();
-			
+			$data['provinsi'] = $this->provinsi_model->get_all_provinsi();
+
+
 			//Menampilkan View
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);
@@ -45,6 +47,9 @@
 				$harga = $this->input->post("harga");
 				$kondisi = $this->input->post("kondisi");
 				$status_nego = $this->input->post("status_nego");
+				$id_provinsi = $this->input->post("id_provinsi");
+				$id_kota = $this->input->post("id_kota");
+
 
 				$this->iklan_model->insert_iklan(array("id_user"=>$id_user,
 													   "id_kategori"=>$id_kategori,
@@ -52,7 +57,9 @@
 													   "judul"=>$judul,
 													   "tipe"=>$tipe,
 													   "harga"=>$harga,
-													   "status_nego"=>$status_nego
+													   "status_nego"=>$status_nego,
+													   "id_provinsi"=>$id_provinsi,
+													   "id_kota"=>$id_kota
 													   ));
 				redirect("user/profil");
 			}
