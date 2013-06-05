@@ -99,7 +99,7 @@
 								<div id="output" class="photo_profile">
 									<?php
 									if ($photo != "") {
-										echo "<img src='".base_url()."uploads/profile/".$photo."' width='100%' height='100%'/>";
+										echo "<img src='".base_url()."uploads/profile/".$photo."' width='100%' height='100%' class='photo_profile'/>";
 									}else{
 										echo "belum ada pp";
 									}

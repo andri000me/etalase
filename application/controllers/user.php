@@ -58,10 +58,11 @@ class User extends CI_Controller {
 
 		$username = $this->session->userdata('username');
 		$id_user = $this->session->userdata('uid');
-
+		$data_user = $this->user_model->select_user_by_id($id_user);
+		
     	$data['judul'] = '';
     	$data['username'] = $username;
-
+		$data['data_user']  = $data_user;
         $data['data_iklan'] = $this->iklan_model->get_iklan_by_id_user($id_user);
 
         $this->load->view('template/head');
@@ -80,7 +81,7 @@ class User extends CI_Controller {
 
     	$data['judul'] = '';
     	$data['username'] = $data_user->username;
-
+    	$data['data_user']  = $data_user;
         $data['data_iklan'] = $this->iklan_model->get_iklan_by_id_user($id_user);
 
         $this->load->view('template/head');

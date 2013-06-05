@@ -203,45 +203,9 @@
 			$id_category_iklan = $this->uri->segment(3);
 
 
-			$data['list_iklan'] = "";
 
-			$iklan_by_category = $this->iklan_model->get_iklan_by_category($id_category_iklan);
+			$data['data_iklan'] = $this->iklan_model->get_iklan_by_category($id_category_iklan);
 
-			foreach ($iklan_by_category as $i) {
-
-				$kondisi = "";
-
-
-				//mengecek kondisi
-				if ($i->kondisi == 1) {
-					$kondisi = "baru";
-				}else{
-					$kondisi = "bekas";
-				}
-
-				$data['list_iklan'] .= "<div class='card'>
-										<div class='content'>
-											<div class='kiri'>
-											<div class='photo border-g'>
-											</div>
-										</div>
-
-										<div class='kiri content info_iklan'>
-										<b><a href='".base_url()."index.php/iklan/detail/".$i->id_iklan."'>".$i->judul."</a></b><br/>
-											<span class='info_small'>Provinsi: ".$i->id_provinsi."</span><br/>
-											<span class='info_small'>Kondisi: ".$kondisi."</span><br/>
-											<span class='info_small'>".$i->waktu_tayang."</span><br/>
-										</div>
-
-										<div class='kanan'>
-											<b>".$i->harga."</b>
-										</div>
-
-										<div class='clear'></div>
-									</div>
-								</div>";
-
-			}
 
 			$nama_kategori = $this->kategori_model->get_kategori_by_id($id_category_iklan);
 			$data['nama_kategori'] = $nama_kategori->nama_kategori;

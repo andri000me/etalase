@@ -84,12 +84,40 @@
 									<h3>Rp <?php echo $data_iklan->harga?></h3>
 									<?php echo ($data_iklan->status_nego==1?"bisa nego":"tidak bisa nego")?>
 									<hr/>
-									<div class='kiri'>
-										<img src='<?php echo base_url()?>img/foto.png' height='80px' width='80px'/>
-									</div>
+							
 									<div class='kiri content' id='iklan_userabout'>
-										<span class='judul_user'><a href='#'><?php echo $pembuat_iklan->username?></a></span><br/>
-										<span class='info_small'>Member sejak: <?php echo $pembuat_iklan->tgl_gabung?></span>
+										<center>
+											<?php 
+												echo "<img src='".base_url()."uploads/profile/".$pembuat_iklan->photo."' width='100%' height='100%' class='photo_profile img-polaroid'/>";
+											?>
+											<h3>
+												<a href="<?php echo base_url()."index.php/user/p/".$pembuat_iklan->id_user?>">
+												<?php echo $pembuat_iklan->username ?>
+												</a>
+											</h3>
+										</center>
+											<hr/>
+											<span class="info_small">Facebook</span><br/>
+											<b><?php echo $pembuat_iklan->fb ?></b>
+
+											<br/>
+
+											<span class="info_small">Yahoo!</span><br/>
+											<b><?php echo $pembuat_iklan->yahoo ?></b>
+
+											<br/>
+
+											<span class="info_small">twitter</span><br/>
+											<b><?php echo $pembuat_iklan->twitter ?></b>
+
+											<br/>
+
+											<span class="info_small">pin bb</span><br/>
+											<b><?php echo $pembuat_iklan->pin_bb ?></b>
+
+											<hr/>
+
+										
 									</div>
 
 									<div class='clear'></div>
