@@ -212,6 +212,9 @@
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan
 
+			//id dari gambar
+			$posisi = $this->input->post("posisi");
+
 			//Some Settings
 			$ThumbSquareSize 		= 200; //Thumbnail will be 200x200
 			$BigImageMaxSize 		= 500; //Image Maximum height or width
@@ -224,7 +227,7 @@
 			// "is_uploaded_file" Tells whether the file was uploaded via HTTP POST
 			if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))
 			{
-					die('Something went wrong with Upload!'); // output error when above checks fail.
+					die('Something went wrong with Upload! <a href="#" onClick="retryUpload('.$posisi.')">retry</a>'); // output error when above checks fail.
 			}
 			
 			// Random number for both file, will be added after image name
@@ -253,7 +256,7 @@
 					$CreatedImage = imagecreatefromjpeg($_FILES['ImageFile']['tmp_name']);
 					break;
 				default:
-					die('Unsupported File!'); //output error and exit
+					die('Unsupported File! <a href="#" onClick="retryUpload('.$posisi.')">retry</a>'); //output error and exit
 			}
 			
 			//PHP getimagesize() function returns height-width from image file stored in PHP tmp folder.
@@ -282,7 +285,8 @@
 				We can render image to user's browser or store information in the database
 				For demo, we are going to output results on browser.
 				*/
-				echo '<img src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
+				echo '<a href="#" onclick="hapusGambar(1);">Hapus<br/></a>';
+				echo '<img id="gambar_'.$posisi.'" src="'.base_url().'uploads/'.$NewImageName.'" alt="Resized Image" width="250px">';
 
 				/*
 				// Insert info into database table!
@@ -291,8 +295,20 @@
 				*/
 
 			}else{
-				die('Resize Error'); //output error
+				die('Resize Error <a href="#" onClick="retryUpload('.$posisi.')">retry</a>'); //output error
 			}
+		}
+
+		function deleteImage($nama_image){
+			$this->sessionlogin->cek_login();
+
+			$alamat = getcwd()."/uploads/".$nama_image;
+			if (unlink($alamat)){
+				echo "";	
+			}else{
+				echo "no delete";
+			}
+			
 		}
 
 		// This function will proportionally resize image 

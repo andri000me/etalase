@@ -53,54 +53,29 @@
 									<div align="center">
 										<table border="1">
 
+											<?php for ($i=1;$i <= 4; $i++) { ?>
+
+											
 											<!-- gambar 1 -->
 											<tr>
 												<td>
 													Gambar utama
+													
+														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm<?php echo $i?>">
+															<input name="ImageFile" type="file" id="inputFile<?php echo $i?>"/>
+															<input type="submit"  id="SubmitButton<?php echo $i?>" value="Upload" />
+															<input type="hidden" name="posisi" value="1"/>
+														</form>
 													<div id="output1">
-														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm1">
-															<input name="ImageFile" type="file" />
-															<input type="submit"  id="SubmitButton" value="Upload" />
-														</form>
 													</div>
 												</td>
 											</tr>
 
-											<!-- gambar 2 -->
-											<tr>
-												<td>
-													<div id="output2">
-														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm2">
-															<input name="ImageFile" type="file" />
-															<input type="submit"  id="SubmitButton" value="Upload" />
-														</form>
-													</div>
-												</td>
-											</tr>
+											<?php
+												}
+											?>
 
-											<!-- gambar 3 -->
-											<tr>
-												<td>
-													<div id="output3">
-														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm3">
-															<input name="ImageFile" type="file" />
-															<input type="submit"  id="SubmitButton" value="Upload" />
-														</form>
-													</div>
-												</td>
-											</tr>
-
-											<!-- gambar 4 -->
-											<tr>
-												<td>
-													<div id="output4">
-														<form action="<?php echo base_url()?>index.php/iklan/upload_gambar" method="post" enctype="multipart/form-data" id="UploadForm4">
-															<input name="ImageFile" type="file" />
-															<input type="submit"  id="SubmitButton" value="Upload" />
-														</form>
-													</div>
-												</td>
-											</tr>
+											
 										</table>
 									</div>
 								</div>
@@ -218,55 +193,59 @@
 </div>
 			<script> 
 			$(document).ready(function() { 
-				$('#UploadForm1').on('submit', function(e) {
-					e.preventDefault();
-					$('#SubmitButton').attr('disabled', ''); // disable upload button
-					//show uploading message
-					$("#output1").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
-					$(this).ajaxSubmit({
-						target: '#output1',
-						success:  afterSuccess //call function after success
-					});
-				});
 
-				$('#UploadForm2').on('submit', function(e) {
-					e.preventDefault();
-					$('#SubmitButton').attr('disabled', ''); // disable upload button
-					//show uploading message
-					$("#output2").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
-					$(this).ajaxSubmit({
-						target: '#output2',
-						success:  afterSuccess //call function after success
-					});
-				});
 
-				$('#UploadForm3').on('submit', function(e) {
-					e.preventDefault();
-					$('#SubmitButton').attr('disabled', ''); // disable upload button
-					//show uploading message
-					$("#output3").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
-					$(this).ajaxSubmit({
-						target: '#output3',
-						success:  afterSuccess //call function after success
+				<?php
+				for ($i = 1; $i <=4;$i++ ) {
+					?>
+					$('#UploadForm<?php echo $i?>').on('submit', function(e) {
+						e.preventDefault();
+						$('#SubmitButton').attr('disabled', ''); // disable upload button
+						//show uploading message
+						$("#output1").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
+						$(this).ajaxSubmit({
+							target: '#output<?php echo $i?>',
+							success:  afterSuccess(<?php echo $i?>) //call function after success
+						});
 					});
-				});
 
-				$('#UploadForm4').on('submit', function(e) {
-					e.preventDefault();
-					$('#SubmitButton').attr('disabled', ''); // disable upload button
-					//show uploading message
-					$("#output4").html('<div style="padding:10px"><img src="<?php echo base_url()?>img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span></div>');
-					$(this).ajaxSubmit({
-						target: '#output4',
-						success:  afterSuccess //call function after success
-					});
-				});
+					<?php
+				}
+
+				?>
+
+				
+
 			}); 
 
-			function afterSuccess()  { 
-				$('#UploadForm').resetForm();  // reset form
-				$('#SubmitButton').removeAttr('disabled'); //enable submit button
+			function afterSuccess(kode)  { 
+				$('#SubmitButton'+kode).removeAttr('disabled'); //enable submit button
 
+				$('#UploadForm'+kode).hide();
+				
 			} 
+
+			function hapusGambar(kode) {
+				console.log("hapus gambar");
+				console.log("hapus "+$("#gambar_"+kode).attr('src'));
+				var alamat = $("#gambar_"+kode).attr('src');
+				var fileNameIndex = alamat.lastIndexOf("/")+1;
+				var fileName = alamat.substr(fileNameIndex);
+				$.ajax({
+					  url: "<?php echo base_url()?>"+"index.php/iklan/deleteImage/"+fileName,
+					  cache: false
+					}).done(function(msg) {
+					  $('#output1').html(msg);
+					  $("#UploadForm"+kode).resetForm();
+					  $('#UploadForm'+kode).show();
+					});
+					
+			}
+
+			function retryUpload(kode){
+				$('#output1').html("");
+				$("#UploadForm"+kode).resetForm();
+				$('#UploadForm'+kode).show();
+			}
 			</script> 
 	
