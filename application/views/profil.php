@@ -6,7 +6,11 @@
 
 								<center>
 								<?php 
-									echo "<img src='".base_url()."uploads/profile/".$data_user->photo."' width='100%' height='100%' class='photo_profile img-polaroid'/>";
+									if ($data_user->photo != "") {
+										echo "<img src='".base_url()."uploads/profile/".$data_user->photo."' width='100%' height='100%' class='photo_profile img-polaroid'/>";
+									}else{
+										echo "<img src='".base_url()."img/empty_pic.png' width='100%' height='100%' class='photo_profile img-polaroid'/>";
+									}
 								?>
 								<h3><?php echo $data_user->username ?></h3>
 
@@ -16,22 +20,28 @@
 								<hr/>
 
 								<span class="info_small">Nama lengkap</span><br/>
-								<b><?php echo $data_user->nama_lengkap ?></b>
+								<b><?php echo ($data_user->nama_lengkap!='0'?$data_user->nama_lengkap:"") ?></b>
 								<br/>
 
 								<span class="info_small">Provinsi</span><br/>
 								<b>
 								<?php 
-								$provinsi = $this->provinsi_model->get_provinsi_by_id($data_user->id_provinsi)->nama_provinsi;
-								echo $provinsi; ?>
+								if ($data_user->id_provinsi != "") {
+									$provinsi = $this->provinsi_model->get_provinsi_by_id($data_user->id_provinsi)->nama_provinsi;
+									echo $provinsi;
+								}
+								 ?>
 								</b>
 								<br/>
 
 								<span class="info_small">Kabupaten/kota</span><br/>
 								<b>
 								<?php 
-								$provinsi = $this->kota_model->get_kota_by_id($data_user->id_kabkota)->nama_kota;
-								echo $provinsi; ?>
+								if ($data_user->id_kabkota) {
+									$provinsi = $this->kota_model->get_kota_by_id($data_user->id_kabkota)->nama_kota;
+									echo $provinsi;	
+								}
+								 ?>
 								</b>
 								<br/>
 								<hr/>
