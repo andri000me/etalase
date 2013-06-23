@@ -1,5 +1,4 @@
 
-
 				<div id="kategori">
 					<div class="kiri">
 						<div class="container_2 border-g">
@@ -9,6 +8,8 @@
 								<?php echo $list_kategori ?>
 							</div><!-- content -->
 						</div>						
+					<?php echo $this->table->generate($records); ?>
+					<?php echo $this->pagination->create_links(); ?>
 					</div>
 
 					<div class="kanan">
