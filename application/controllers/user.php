@@ -9,12 +9,18 @@ class User extends CI_Controller {
 			$this->load->model('user_model');
 			$this->load->library('session');
 			$this->load->model('provinsi_model');
+			$this->load->model('kategori_model');
 			$this->load->model('kota_model');
 			$this->load->model('iklan_model');
 		}
 	
 	public function index()
     {
+
+    	//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
         $data['judul'] = '';
 
         $this->load->view('template/head');
@@ -29,6 +35,9 @@ class User extends CI_Controller {
 	//DAFTAR
 	function daftar()
     {
+    	//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
 
         $data['judul'] = 'Insert Data User';
         $this->load->view('template/head');
@@ -44,6 +53,10 @@ class User extends CI_Controller {
 	//PROSES MEMASUKKAN USER
 	function user_daftar()
     {   
+    	//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 		$this->load->model('user_model');
         $this->user_model->simpan_user();
         $data['notifikasi'] = 'Data berhasil disimpan';
@@ -53,6 +66,10 @@ class User extends CI_Controller {
 
 
     function profil(){
+    	//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 
 		$this->sessionlogin->cek_login();
 
@@ -77,6 +94,10 @@ class User extends CI_Controller {
     //profil individu
     function p($id_user){
 
+    	//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
     	$data_user = $this->user_model->select_user_by_id($id_user);
 
     	$data['judul'] = '';
@@ -97,6 +118,10 @@ class User extends CI_Controller {
 	//EDIT USER
 	
 	function edit_profil(){
+		//data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
     	$data['title'] = "Edit_Profile";
 
     	$this->sessionlogin->cek_login();
@@ -148,6 +173,10 @@ class User extends CI_Controller {
     }
 	
 	function simpan_edit_profil(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$this->sessionlogin->cek_login();
 			$username = $this->session->userdata("username");
 			$id_user = $this->session->userdata("uid");
@@ -186,6 +215,7 @@ class User extends CI_Controller {
 	}
 	
 	public function edit_photo(){
+
 
 			//mengecek login
 			if ($this->session->userdata('LOGGED_IN')) {

@@ -17,6 +17,11 @@
 											<span class='info_small'><?php echo $kota->nama_kota?></span>
 										</b>
 										<br/>
+										<span class='info_small'>Kategori:</span>
+										<b>
+											<span class='info_small'><?php echo $kategori->nama_kategori?></span>
+										</b>
+										<br/>
 										<span class='info_small'>Kondisi:</span>
 										<b>
 											<span class='info_small'><?php echo ($data_iklan->kondisi=="1"?"baru":"bekas");?></span>

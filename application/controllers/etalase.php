@@ -17,10 +17,14 @@ class Etalase extends CI_Controller {
 			$this->load->library('session');
 			$this->load->model('provinsi_model');
 			$this->load->model('kategori_model');
+
+
+
 		}
 	
 	public function index()
     {
+			
 		
 		$this->load->library('pagination');
 		$this->load->library('table');
@@ -37,8 +41,12 @@ class Etalase extends CI_Controller {
 
         $this->load->view('template/head');
 
+        //data buat search
+        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
         if ($this->session->userdata("LOGGED_IN") == false) {
-        	$this->load->view('template/header_bar_utama');
+        	$this->load->view('template/header_bar_utama', $data);
         }else{
 			$this->load->view('template/header_bar');
         }

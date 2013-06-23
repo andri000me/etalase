@@ -25,6 +25,9 @@
 		}
 
 		public function pasang(){	
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
 			$this->load->helper('form');
 
 			//cek sudah login
@@ -90,6 +93,10 @@
 		}
 
 		public function proses_pasang(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$this->sessionlogin->cek_login();
 
 			$setuju = $this->input->post("setuju");
@@ -136,6 +143,11 @@
 		}
 
 		public function proses_edit(){
+
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$this->sessionlogin->cek_login();
 
 			$setuju = $this->input->post("setuju");
@@ -185,6 +197,10 @@
 
 
 		public function detail(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$id_iklan = $this->uri->segment(3);
 
 			$data_iklan = $this->iklan_model->get_iklan_by_id_iklan($id_iklan);
@@ -197,6 +213,8 @@
 			$data['kota'] = $this->kota_model->get_kota_by_id($data_iklan->id_kota);
 
 			$data['title'] = 'Iklan Etalase';
+
+			$data['kategori'] = $this->kategori_model->get_kategori_by_id($data_iklan->id_kategori);
 
 			//Menampilkan View
 			$this->load->view('template/head', $data);
@@ -211,6 +229,10 @@
 
 		//MENAMPILKAN LIST IKLAN BERDASARKAN JENIS IKLAN
 		public function list_iklan(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$id_category_iklan = $this->uri->segment(3);
 
 			$config['base_url'] = 'http://localhost/tubesasli2/index.php/iklan/list_iklan';
@@ -241,6 +263,10 @@
 		}
 
 		public function upload_gambar($id_iklan){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan
 
@@ -336,6 +362,7 @@
 		}
 
 		function deleteImage($nama_image){
+
 			$this->sessionlogin->cek_login();
 
 			$alamat = getcwd()."/uploads/".$nama_image;
@@ -350,11 +377,39 @@
 			
 		}
 
+		//MENAMPILKAN LIST IKLAN DENGAN SEARCH
+		public function search(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
+
+
+	        $search_nama	 = $this->input->get("nama_search"); 
+	        $search_kategori = $this->input->get("id_kategori");
+	        $search_provinsi = $this->input->get("id_kota");
+
+
+			$data['data_iklan'] = $this->iklan_model->iklan_like($search_nama, $search_kategori, $search_provinsi);
+
+			$data['nama_kategori'] = $search_nama;
+
+			//Menampilkan View
+			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
+			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
+			$this->load->view('list_iklan', $data);
+			$this->load->view('template/content_foot', $data);
+			$this->load->view('template/foot', $data);
+		}
+
 
 		/**
 		 *	Hapus gambar buat edit
 		 */
 		function deleteEditImage($nama_image){
+
 			$id_iklan = $this->uri->segment(4);
 			$gambar_ke = $this->uri->segment(5);
 
