@@ -6,10 +6,15 @@
 			$this->load->model('user_model');
 			$this->load->model('provinsi_model');
 			$this->load->library('session');
+			$this->load->model('kategori_model');
 		}
 
 
 		public function index(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$data['title'] = 'Iklan Etalase';
 			//Menampilkan View
 			$data['error']='';
@@ -25,6 +30,10 @@
 
 
 	    public function proses_login(){
+	    	//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+	    	
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			

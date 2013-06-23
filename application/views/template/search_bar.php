@@ -17,17 +17,35 @@
 										Cari
 										<input type="text" class="input-form">
 
-										<select class="input-form">
-											<?php echo $provinsi_model?>
+										Kategori
+										<select required name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+											<option value="">Pilih kategori</option>
+											<?php 
+											foreach ($kategori_list_search as $k) {
+											?>
+											<option value="<?php echo $k->id_kategori?>">
+												<?php echo $k->nama_kategori?>
+											</option>
+											<?
+											}
+											?>
 										</select>
-
-										<select class="input-form">
-											<option>
-												Pilihan sub kategori
-											<option>
+										
+										Provinsi
+										<select required name="id_kota" id="select_kota_tambah_iklan">
+											<option value="">Pilihan provinsi</option>
+											<?php 
+											foreach ($provinsi_list_search as $k) {
+											?>
+											<option value="<?php echo $k->id_provinsi?>">
+												<?php echo $k->nama_provinsi?>
+											</option>
+											<?
+											}
+											?>
 										</select>
-
-										<input type="submit" class="input-button" value="Cari"/>
+											&nbsp
+											<input type="submit" class="input-button" value="Cari"/>
 									</form>
 								</div>
 							</div>	

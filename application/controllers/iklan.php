@@ -11,6 +11,7 @@
 			$this->load->model('user_model');
 			$this->load->model('sub_kategori_model');
 			$this->load->model('kota_model');
+			
 		}
 
 		public function index(){
@@ -18,6 +19,9 @@
 		}
 
 		public function pasang(){	
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
 			$this->load->helper('form');
 
 			//cek sudah login
@@ -83,6 +87,10 @@
 		}
 
 		public function proses_pasang(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$this->sessionlogin->cek_login();
 
 			$setuju = $this->input->post("setuju");
@@ -129,6 +137,11 @@
 		}
 
 		public function proses_edit(){
+
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$this->sessionlogin->cek_login();
 
 			$setuju = $this->input->post("setuju");
@@ -178,6 +191,10 @@
 
 
 		public function detail(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$id_iklan = $this->uri->segment(3);
 
 			$data_iklan = $this->iklan_model->get_iklan_by_id_iklan($id_iklan);
@@ -204,6 +221,10 @@
 
 		//MENAMPILKAN LIST IKLAN BERDASARKAN JENIS IKLAN
 		public function list_iklan(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			$id_category_iklan = $this->uri->segment(3);
 
 
@@ -225,6 +246,10 @@
 		}
 
 		public function upload_gambar($id_iklan){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
 			//Sumber referensi http://www.saaraan.com/2012/05/ajax-image-upload-and-resize-with-jquery-and-php
 			//dengan beberapa perubahan
 
@@ -320,6 +345,7 @@
 		}
 
 		function deleteImage($nama_image){
+
 			$this->sessionlogin->cek_login();
 
 			$alamat = getcwd()."/uploads/".$nama_image;
@@ -339,6 +365,7 @@
 		 *	Hapus gambar buat edit
 		 */
 		function deleteEditImage($nama_image){
+
 			$id_iklan = $this->uri->segment(4);
 			$gambar_ke = $this->uri->segment(5);
 
