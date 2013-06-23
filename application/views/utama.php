@@ -8,8 +8,6 @@
 								<?php echo $list_kategori ?>
 							</div><!-- content -->
 						</div>						
-					<?php echo $this->table->generate($records); ?>
-					<?php echo $this->pagination->create_links(); ?>
 					</div>
 
 					<div class="kanan">

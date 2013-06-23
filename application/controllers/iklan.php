@@ -5,15 +5,22 @@
 
 			parent::__construct();
 
+			
 			$this->load->model('iklan_model');
 			$this->load->model('kategori_model');
 			$this->load->model('provinsi_model');
 			$this->load->model('user_model');
 			$this->load->model('sub_kategori_model');
 			$this->load->model('kota_model');
+			$this->load->library('pagination');
+			$this->load->library('table');
 		}
 
 		public function index(){
+			
+		
+        
+		
 			
 		}
 
@@ -206,14 +213,23 @@
 		public function list_iklan(){
 			$id_category_iklan = $this->uri->segment(3);
 
-
-
+			$config['base_url'] = 'http://localhost/tubesasli2/index.php/iklan/list_iklan';
+			$config['total_rows'] = $this->db->get('iklan')->num_rows();
+			$config['per_page'] = 4;
+			$config['num_links'] = 1;
+			$config['full_tag_open'] = '<div id="pagination">';
+			$config['full_tag_close'] = '</div>';
+		
+			$this->pagination->initialize($config);
+			$data['records'] = $this->db->get('iklan', $config['per_page'], $this->uri->segment(3));
+			
 			$data['data_iklan'] = $this->iklan_model->get_iklan_by_category($id_category_iklan);
 
 
 			$nama_kategori = $this->kategori_model->get_kategori_by_id($id_category_iklan);
 			$data['nama_kategori'] = $nama_kategori->nama_kategori;
 
+				
 			//Menampilkan View
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);

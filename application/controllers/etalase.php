@@ -24,15 +24,8 @@ class Etalase extends CI_Controller {
 		
 		$this->load->library('pagination');
 		$this->load->library('table');
-        $config['base_url'] = 'http://localhost/tubesasli2/index.php/etalase/index';
-		$config['total_rows'] = $this->db->get('kategori')->num_rows();
-		$config['per_page'] = 7;
-		$config['num_links'] = 2;
-		$config['full_tag_open'] = '<div id="pagination">';
-		$config['full_tag_close'] = '</div>';
+        
 		
-		$this->pagination->initialize($config);
-		$data['records'] = $this->db->get('kategori', $config['per_page'], $this->uri->segment(3));
 		$data['judul'] = '';
 
 

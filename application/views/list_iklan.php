@@ -2,6 +2,10 @@
 					<div class="kiri">
 						<div class="container_1 border-g">
 							<div class="content">
+								
+								<?php echo $this->table->generate($records); ?>
+								<?php echo $this->pagination->create_links(); ?>
+								
 								<h1><?php echo $nama_kategori?></h1>
 
 
@@ -30,7 +34,7 @@
 													<img src="<?php echo base_url().($dai->photo1!=""?"uploads/".$dai->photo1:"img/empty_pic.png")?>" width="100%" height="100%">
 												</div>
 											</div>
-
+					
 											<div class='kiri content info_iklan'>
 											<b><a href='<?php echo base_url()."index.php/iklan/detail/".$dai->id_iklan?>'><?php echo $dai->judul ?></a></b><br/>
 												<span class='info_small'><b><?php echo $tipe?></b></span><br/>
@@ -45,11 +49,11 @@
 
 											<div class='clear'></div>
 										</div>
+									
 									</div>
 								<?php }?>
 
-								
-
+					
 								<!-- iklan -->
 								<!-- <div class="card">
 									<div class="content">
