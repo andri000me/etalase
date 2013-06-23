@@ -208,6 +208,8 @@
 
 			$data['title'] = 'Iklan Etalase';
 
+			$data['kategori'] = $this->kategori_model->get_kategori_by_id($data_iklan->id_kategori);
+
 			//Menampilkan View
 			$this->load->view('template/head', $data);
 			$this->load->view('template/header_bar', $data);
@@ -369,7 +371,7 @@
 
 
 	        $search_nama	 = $this->input->get("nama_search"); 
-	        $search_kategori = $this->input->get("id_provinsi");
+	        $search_kategori = $this->input->get("id_kategori");
 	        $search_provinsi = $this->input->get("id_kota");
 
 

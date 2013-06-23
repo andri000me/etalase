@@ -34,7 +34,7 @@
 		}
 
 		function iklan_like($nama, $id_kategori, $id_provinsi){
-			$query = $this->db->query("SELECT * FROM iklan WHERE judul like '%$nama%' ");
+			$query = $this->db->query("SELECT * FROM iklan WHERE judul like '%$nama%' AND id_kategori = '$id_kategori' AND id_provinsi = '$id_provinsi' ");
 			return $query->result();
 		}
 
