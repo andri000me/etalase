@@ -33,4 +33,9 @@
 			$this->db->update('iklan', $array);
 		}
 
+		function iklan_like($nama, $id_kategori, $id_provinsi){
+			$query = $this->db->query("SELECT * FROM iklan WHERE judul like '%$nama%' ");
+			return $query->result();
+		}
+
 	}

@@ -13,12 +13,12 @@
 								<div class="content">
 									<b>Cari di Etalase.com</b>
 									<!-- Pencarian -->
-									<form>
+									<form action="<?php echo base_url()?>index.php/iklan/search" method="GET">
 										Cari
-										<input type="text" class="input-form">
+										<input type="text" class="input-form" name="nama_search"/>
 
 										Kategori
-										<select required name="id_provinsi" onChange="pilihProvinsiTambahIklan('<?php echo base_url()?>');" id="select_provinsi_tambah_iklan">
+										<select required name="id_provinsi" id="select_provinsi_tambah_iklan">
 											<option value="">Pilih kategori</option>
 											<?php 
 											foreach ($kategori_list_search as $k) {

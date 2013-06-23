@@ -11,7 +11,7 @@
 			$this->load->model('user_model');
 			$this->load->model('sub_kategori_model');
 			$this->load->model('kota_model');
-			
+
 		}
 
 		public function index(){
@@ -358,6 +358,33 @@
 				die("Tidak bisa menghapus foto. Coba refresh laman");
 			}
 			
+		}
+
+		//MENAMPILKAN LIST IKLAN DENGAN SEARCH
+		public function search(){
+			//data buat search
+	        $data['kategori_list_search'] = $this->kategori_model->get_all_kategori();
+	        $data['provinsi_list_search'] = $this->provinsi_model->get_all_provinsi();
+
+
+
+	        $search_nama	 = $this->input->get("nama_search"); 
+	        $search_kategori = $this->input->get("id_provinsi");
+	        $search_provinsi = $this->input->get("id_kota");
+
+
+			$data['data_iklan'] = $this->iklan_model->iklan_like($search_nama, $search_kategori, $search_provinsi);
+
+			$data['nama_kategori'] = $search_nama;
+
+			//Menampilkan View
+			$this->load->view('template/head', $data);
+			$this->load->view('template/header_bar', $data);
+			$this->load->view('template/content_head', $data);
+			$this->load->view('template/search_bar', $data);
+			$this->load->view('list_iklan', $data);
+			$this->load->view('template/content_foot', $data);
+			$this->load->view('template/foot', $data);
 		}
 
 
